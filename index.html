@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Review · Units 5 & 6 | 2BAC</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #0c0e14;
+  --bg2:    #12151f;
+  --bg3:    #191d2a;
+  --border: #242838;
+  --gold:   #f0b429;
+  --red:    #e05252;
+  --green:  #3dd68c;
+  --blue:   #4a9eff;
+  --purple: #b48afa;
+  --text:   #e6e8f0;
+  --muted:  #636a7c;
+  --u5:     #4a9eff;
+  --u6:     #b48afa;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Source Serif 4',Georgia,serif;
+  font-size:15px;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── HEADER ── */
+.site-header{
+  background:linear-gradient(135deg,#0c0e14 0%,#131026 50%,#0c1220 100%);
+  border-bottom:3px solid var(--gold);
+  padding:18px 20px 14px;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 4px 30px rgba(0,0,0,.7);
+}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.hdr-school{font-family:'Oswald',sans-serif;}
+.hdr-school .name{font-size:0.78rem;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase;}
+.hdr-school .sub{font-size:0.65rem;color:var(--muted);margin-top:1px;}
+.hdr-badge{
+  background:linear-gradient(135deg,var(--gold),var(--gold2,#d4940a));
+  color:#000;font-family:'Oswald',sans-serif;font-weight:700;font-size:0.7rem;
+  padding:4px 12px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;
+  white-space:nowrap;
+}
+.hdr-title{
+  text-align:center;margin-top:10px;
+  font-family:'Oswald',sans-serif;font-size:clamp(1.1rem,4vw,1.5rem);
+  font-weight:700;color:#fff;letter-spacing:1px;
+}
+.hdr-title span{color:var(--gold);}
+
+/* ── UNIT BADGES ── */
+.unit-tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:6px;}
+.utag{
+  font-family:'Oswald',sans-serif;font-size:0.68rem;font-weight:600;
+  padding:3px 12px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;
+}
+.utag-u5{background:rgba(74,158,255,.15);color:var(--u5);border:1px solid rgba(74,158,255,.3);}
+.utag-u6{background:rgba(180,138,250,.15);color:var(--u6);border:1px solid rgba(180,138,250,.3);}
+
+/* ── TABS ── */
+.tabs{
+  display:flex;flex-wrap:wrap;gap:4px;
+  padding:12px 14px 0;
+  background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:80px;z-index:100;
+}
+.tb{
+  font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;
+  padding:7px 14px;border-radius:8px 8px 0 0;
+  background:transparent;color:var(--muted);
+  border:1px solid transparent;border-bottom:none;
+  cursor:pointer;letter-spacing:.5px;
+  transition:all .2s;
+}
+.tb:hover{color:var(--text);background:var(--bg3);}
+.tb.active{background:var(--bg3);color:var(--gold);border-color:var(--border);}
+.tb .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle;}
+.dot-u5{background:var(--u5);}
+.dot-u6{background:var(--u6);}
+
+/* ── PANELS ── */
+.panel{display:none;padding:18px 16px 40px;max-width:820px;margin:0 auto;}
+.panel.active{display:block;}
+
+/* ── SECTION HEADER ── */
+.sec-hdr{
+  margin-bottom:20px;padding-bottom:12px;
+  border-bottom:1px solid var(--border);
+}
+.sec-kicker{
+  font-family:'JetBrains Mono',monospace;font-size:0.65rem;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;
+}
+.sec-title{font-family:'Oswald',sans-serif;font-size:clamp(1.2rem,4vw,1.6rem);font-weight:700;}
+.sec-desc{font-size:0.85rem;color:var(--muted);margin-top:4px;line-height:1.5;}
+
+/* ── CARDS ── */
+.card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:10px;padding:16px;margin-bottom:14px;
+}
+.card-title{
+  font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;
+  margin-bottom:10px;
+}
+.card-title .ico{margin-right:6px;}
+
+/* ── VOCAB GRID ── */
+.v-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:10px 0;}
+.v-item{
+  background:var(--bg3);border:1px solid var(--border);border-radius:8px;
+  padding:12px;cursor:pointer;transition:all .2s;
+}
+.v-item:hover,.v-item.open{border-color:var(--gold);background:#1a1a24;}
+.v-word{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;color:var(--gold);}
+.v-pos{font-size:0.65rem;color:var(--muted);font-style:italic;margin-bottom:5px;}
+.v-def{font-size:0.82rem;line-height:1.5;color:var(--text);}
+.v-ex{
+  font-size:0.78rem;color:var(--blue);font-style:italic;
+  margin-top:6px;padding-top:6px;border-top:1px solid var(--border);
+  display:none;
+}
+.v-item.open .v-ex{display:block;}
+
+/* ── GRAMMAR BOXES ── */
+.rule-box{
+  background:var(--bg3);border-left:3px solid var(--blue);
+  border-radius:0 8px 8px 0;padding:13px 15px;margin-bottom:12px;
+}
+.rule-box.purple{border-left-color:var(--purple);}
+.rule-box.gold{border-left-color:var(--gold);}
+.rule-box.green{border-left-color:var(--green);}
+.rule-title{font-family:'Oswald',sans-serif;font-size:0.9rem;font-weight:600;margin-bottom:6px;}
+.rule-formula{
+  font-family:'JetBrains Mono',monospace;font-size:0.8rem;
+  background:#0d1420;border:1px solid var(--border);
+  border-radius:6px;padding:7px 12px;margin:8px 0;color:var(--blue);
+}
+.rule-formula.purple{color:var(--purple);}
+.rule-formula.gold{color:var(--gold);}
+.ex-list{list-style:none;padding:0;}
+.ex-list li{
+  font-size:0.83rem;padding:5px 0 5px 16px;border-bottom:1px solid var(--border);
+  position:relative;line-height:1.5;
+}
+.ex-list li:last-child{border-bottom:none;}
+.ex-list li::before{content:"→";position:absolute;left:0;color:var(--muted);}
+.ex-list li em{color:var(--gold);font-style:normal;}
+.ex-list li .hl{color:var(--green);font-weight:600;}
+
+/* ── PHRASAL VERB TABLE ── */
+.pv-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin-top:8px;}
+.pv-table th{
+  background:var(--bg3);padding:9px 10px;text-align:left;
+  font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+  border-bottom:2px solid var(--border);
+}
+.pv-table td{
+  padding:9px 10px;border-bottom:1px solid var(--border);
+  vertical-align:top;
+}
+.pv-table tr:hover td{background:rgba(255,255,255,.03);}
+.pv{font-family:'Oswald',sans-serif;font-weight:600;color:var(--purple);}
+.pv-mean{color:var(--text);}
+.pv-eg{font-style:italic;color:var(--muted);font-size:0.77rem;margin-top:3px;}
+
+/* ── FUNCTIONS TABLE ── */
+.fn-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin-top:8px;}
+.fn-table th{
+  background:var(--bg3);padding:9px 10px;text-align:left;
+  font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+  border-bottom:2px solid var(--border);
+}
+.fn-table td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+.fn-table tr:hover td{background:rgba(255,255,255,.03);}
+.fn-cat{font-family:'Oswald',sans-serif;font-weight:600;font-size:0.82rem;color:var(--gold);}
+.fn-expr{font-style:italic;color:var(--blue);}
+
+/* ── PASSIVE TABLE ── */
+.pass-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin-top:8px;}
+.pass-table th{
+  background:var(--bg3);padding:9px 10px;text-align:left;
+  font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+  border-bottom:2px solid var(--border);
+}
+.pass-table td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.pass-table tr:hover td{background:rgba(255,255,255,.03);}
+.tense-name{font-family:'Oswald',sans-serif;font-weight:600;color:var(--blue);font-size:0.82rem;}
+.formula-cell{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--purple);}
+
+/* ── CONCESSION TABLE ── */
+.con-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin-top:8px;}
+.con-table th{
+  background:var(--bg3);padding:9px 10px;text-align:left;
+  font-family:'Oswald',sans-serif;font-size:0.72rem;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+  border-bottom:2px solid var(--border);
+}
+.con-table td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;}
+.con-table tr:hover td{background:rgba(255,255,255,.03);}
+.con-word{font-family:'Oswald',sans-serif;font-weight:600;color:var(--green);}
+.con-rule{font-size:0.78rem;color:var(--muted);}
+.con-ex{font-style:italic;font-size:0.78rem;color:var(--text);}
+.con-ex em{color:var(--green);font-style:normal;font-weight:600;}
+
+/* ── QUIZ ── */
+.quiz-q{margin-bottom:20px;}
+.quiz-text{font-size:0.95rem;line-height:1.6;margin-bottom:12px;font-weight:700;color:#f0f2ff;}
+.quiz-text .blank{
+  display:inline-block;min-width:80px;
+  border-bottom:2px solid var(--gold);
+  color:var(--gold);text-align:center;padding:0 4px;
+  font-style:italic;
+}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.opt{
+  background:#1e2230;border:1px solid #323650;
+  border-radius:8px;padding:11px 14px;cursor:pointer;
+  font-size:0.88rem;font-weight:500;color:#d4d8f0;
+  line-height:1.5;transition:all .2s;text-align:left;
+}
+.opt:hover:not(:disabled){border-color:var(--gold);color:#ffe082;background:#23201a;}
+.opt.chosen{border-color:var(--gold);color:#ffe082;background:#23201a;}
+.opt.correct{border-color:#3dd68c;background:rgba(61,214,140,.15);color:#7fffc0;font-weight:600;}
+.opt.wrong{border-color:#e05252;background:rgba(224,82,82,.15);color:#ff9a9a;font-weight:600;}
+.opt:disabled{cursor:default;}
+.q-fb{font-size:0.83rem;font-weight:500;margin-top:8px;padding:8px 12px;border-radius:6px;display:none;line-height:1.5;}
+.q-fb.show{display:block;}
+.q-fb.ok{background:rgba(61,214,140,.12);color:#7fffc0;border:1px solid rgba(61,214,140,.35);}
+.q-fb.no{background:rgba(224,82,82,.12);color:#ffaaaa;border:1px solid rgba(224,82,82,.35);}
+.q-num{
+  display:inline-block;font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;font-weight:700;color:#8892b0;
+  letter-spacing:1px;margin-bottom:6px;
+}
+
+/* ── SCORE BOX ── */
+.score-box{
+  background:#1e2230;border:1px solid #323650;
+  border-radius:10px;padding:18px;text-align:center;margin-top:12px;
+  display:none;
+}
+.score-big{font-family:'Oswald',sans-serif;font-size:2.8rem;font-weight:700;color:var(--gold);}
+.score-msg{font-size:0.88rem;color:#b0b8d0;margin-top:6px;}
+
+/* ── FILL IN ── */
+.fi-q{margin-bottom:16px;}
+.fi-line{font-size:0.92rem;line-height:2;color:#d4d8f0;font-weight:500;}
+.fi-input{
+  display:inline-block;
+  border:none;border-bottom:2px solid #4a5070;
+  background:transparent;color:#f0f2ff;
+  font-family:'Source Serif 4',Georgia,serif;font-size:0.92rem;font-weight:600;
+  padding:2px 6px;min-width:110px;outline:none;
+  transition:border-color .2s;
+}
+.fi-input::placeholder{color:#4a5070;}
+.fi-input:focus{border-bottom-color:var(--gold);}
+.fi-input.ok{border-bottom-color:#3dd68c;color:#7fffc0;}
+.fi-input.no{border-bottom-color:#e05252;color:#ff9a9a;}
+.fi-fb{font-size:0.8rem;font-weight:600;display:none;margin-top:4px;padding:3px 0;}
+.fi-fb.show{display:block;}
+.fi-fb.ok{color:#7fffc0;}
+.fi-fb.no{color:#ffaaaa;}
+
+/* ── WORD BANK ── */
+.wbank{
+  display:flex;flex-wrap:wrap;gap:7px;
+  background:#1a1e2c;border:1px solid #2e3448;
+  border-radius:8px;padding:11px 13px;margin-bottom:14px;
+}
+.wb-chip{
+  background:rgba(74,158,255,.15);border:1px solid rgba(74,158,255,.4);
+  color:#82c4ff;border-radius:20px;padding:4px 12px;
+  font-size:0.82rem;font-weight:600;font-family:'JetBrains Mono',monospace;
+}
+.wb-chip.used{opacity:.35;text-decoration:line-through;}
+
+/* ── TRANSFORM ── */
+.tx-q{margin-bottom:20px;}
+.tx-given{
+  font-size:0.92rem;color:#d4d8f0;font-weight:500;
+  background:#1a1e2c;border-left:3px solid var(--blue);
+  border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:8px;line-height:1.6;
+}
+.tx-given .key{
+  display:inline-block;margin-top:6px;
+  font-family:'JetBrains Mono',monospace;font-size:0.82rem;font-weight:700;
+  color:#82c4ff;background:rgba(74,158,255,.12);
+  padding:2px 10px;border-radius:4px;border:1px solid rgba(74,158,255,.3);
+}
+.tx-answer-box{
+  width:100%;background:#1a1e2c;border:1px solid #2e3448;
+  border-radius:7px;padding:10px 13px;color:#f0f2ff;
+  font-family:'Source Serif 4',Georgia,serif;font-size:0.9rem;font-weight:500;
+  resize:none;outline:none;transition:border-color .2s;
+  min-height:50px;
+}
+.tx-answer-box::placeholder{color:#4a5070;}
+.tx-answer-box:focus{border-color:var(--gold);}
+.model-ans{
+  font-size:0.86rem;font-weight:500;
+  background:rgba(61,214,140,.1);
+  border:1px solid rgba(61,214,140,.3);border-radius:6px;
+  padding:10px 13px;margin-top:8px;color:#7fffc0;display:none;line-height:1.6;
+}
+.model-ans.show{display:block;}
+.model-ans strong{
+  color:#3dd68c;font-family:'Oswald',sans-serif;font-size:0.7rem;
+  letter-spacing:1.5px;text-transform:uppercase;display:block;margin-bottom:4px;
+}
+
+/* ── WRITING ── */
+.writing-prompt{
+  background:linear-gradient(135deg,rgba(180,138,250,.08),rgba(74,158,255,.05));
+  border:1px solid rgba(180,138,250,.25);border-radius:10px;
+  padding:15px 16px;margin-bottom:14px;
+}
+.writing-prompt .label{
+  font-family:'Oswald',sans-serif;font-size:0.68rem;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:6px;
+}
+.writing-prompt .prompt-text{font-size:0.9rem;line-height:1.6;}
+.lang-bank{margin-top:10px;}
+.lb-title{font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+.lb-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.lb-chip{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:6px;padding:4px 10px;font-size:0.78rem;
+  font-style:italic;color:var(--text);
+}
+
+/* ── BUTTONS ── */
+.btn{
+  font-family:'Oswald',sans-serif;font-size:0.78rem;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;
+  padding:9px 20px;border-radius:8px;cursor:pointer;
+  transition:all .2s;border:none;
+}
+.btn-gold{background:var(--gold);color:#000;}
+.btn-gold:hover{background:#d4940a;}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+
+/* ── PROGRESS ── */
+.prog-bar-wrap{background:var(--bg3);border-radius:20px;height:6px;overflow:hidden;margin:5px 0 10px;}
+.prog-bar-fill{height:100%;background:linear-gradient(90deg,var(--u5),var(--u6));border-radius:20px;
+  transition:width .5s ease;}
+
+/* ── OVERVIEW ── */
+.overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0;}
+.ov-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:14px;
+}
+.ov-unit{font-family:'Oswald',sans-serif;font-size:0.68rem;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;}
+.ov-unit.u5{color:var(--u5);}
+.ov-unit.u6{color:var(--u6);}
+.ov-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;margin-bottom:8px;}
+.ov-list{list-style:none;padding:0;}
+.ov-list li{
+  font-size:0.78rem;padding:4px 0 4px 14px;
+  border-bottom:1px solid var(--border);
+  position:relative;color:var(--muted);
+}
+.ov-list li:last-child{border-bottom:none;}
+.ov-list li::before{content:"✦";position:absolute;left:0;font-size:0.55rem;top:7px;color:var(--gold);}
+
+/* ── FOOTER ── */
+footer{
+  text-align:center;padding:20px;
+  font-size:0.7rem;color:var(--muted);
+  border-top:1px solid var(--border);margin-top:30px;
+  font-family:'Oswald',sans-serif;letter-spacing:1px;
+}
+
+/* ── RESPONSIVE ── */
+/* ══════════════════════════════════════════
+   MOBILE-FIRST RESPONSIVE
+══════════════════════════════════════════ */
+@media(max-width:768px){
+  /* Header */
+  .site-header{padding:12px 14px 10px;position:relative;}
+  .hdr-top{gap:6px;}
+  .hdr-school .name{font-size:0.72rem;}
+  .hdr-school .sub{font-size:0.6rem;}
+  .hdr-badge{font-size:0.62rem;padding:3px 9px;}
+  .hdr-title{font-size:1rem;margin-top:7px;}
+  .unit-tags{gap:5px;margin-top:5px;}
+  .utag{font-size:0.6rem;padding:2px 9px;}
+
+  /* Tabs — scrollable horizontal strip */
+  .tabs{
+    position:relative;top:0;
+    flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    padding:8px 10px 0;gap:3px;
+    scrollbar-width:none;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tb{
+    white-space:nowrap;flex-shrink:0;
+    font-size:0.68rem;padding:6px 11px;
+  }
+
+  /* Panels */
+  .panel{padding:12px 12px 32px;}
+
+  /* Section headers */
+  .sec-title{font-size:1.1rem;}
+  .sec-desc{font-size:0.8rem;}
+
+  /* Cards */
+  .card{padding:13px;margin-bottom:12px;}
+  .card-title{font-size:0.95rem;}
+
+  /* Overview grid — single column */
+  .overview-grid{grid-template-columns:1fr;}
+  .ov-name{font-size:0.92rem;}
+  .ov-list li{font-size:0.75rem;}
+
+  /* Vocabulary grid */
+  .v-grid{grid-template-columns:1fr 1fr;}
+  .v-word{font-size:0.92rem;}
+  .v-def{font-size:0.78rem;}
+  .v-ex{font-size:0.74rem;}
+
+  /* Tables — horizontal scroll */
+  .pass-table,.pv-table,.fn-table,.con-table{
+    display:block;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    font-size:0.76rem;
+  }
+  .pass-table th,.pv-table th,.fn-table th,.con-table th,
+  .pass-table td,.pv-table td,.fn-table td,.con-table td{
+    padding:7px 8px;white-space:normal;min-width:80px;
+  }
+
+  /* Rule boxes */
+  .rule-box{padding:10px 12px;}
+  .rule-title{font-size:0.85rem;}
+  .ex-list li{font-size:0.8rem;}
+
+  /* Buttons row */
+  .btn-row{gap:6px;}
+  .btn{font-size:0.72rem;padding:7px 14px;}
+
+  /* Quiz MCQ — single column */
+  .opts{grid-template-columns:1fr;}
+  .opt{font-size:0.85rem;padding:10px 12px;}
+  .quiz-text{font-size:0.88rem;}
+  .q-fb{font-size:0.8rem;}
+
+  /* Fill in */
+  .fi-line{font-size:0.86rem;line-height:2.1;}
+  .fi-input{min-width:80px;font-size:0.86rem;}
+
+  /* Word bank */
+  .wb-chip{font-size:0.76rem;padding:4px 9px;}
+
+  /* Transformation */
+  .tx-given{font-size:0.85rem;padding:9px 11px;}
+  .tx-answer-box{font-size:0.85rem;padding:9px 11px;}
+  .model-ans{font-size:0.82rem;}
+
+  /* Writing section */
+  .writing-prompt .prompt-text{font-size:0.85rem;}
+  .lb-chip{font-size:0.74rem;padding:3px 8px;}
+
+  /* Score box */
+  .score-big{font-size:2rem;}
+  .score-msg{font-size:0.82rem;}
+
+  /* Practice sub-nav */
+  #panel-practice > div:first-of-type{
+    flex-wrap:wrap;gap:5px;
+  }
+  #panel-practice > div:first-of-type .btn{
+    font-size:0.67rem;padding:5px 10px;
+  }
+
+  /* Match game */
+  #match-container > div{
+    grid-template-columns:1fr 1fr !important;
+    gap:6px !important;
+  }
+  .match-btn{font-size:0.75rem;padding:8px 9px;}
+
+  /* Letter structure box */
+  .card div[style*="font-size:0.83rem"]{font-size:0.8rem !important;}
+}
+
+@media(max-width:420px){
+  .v-grid{grid-template-columns:1fr;}
+  .hdr-title{font-size:0.9rem;}
+  .tabs .tb{font-size:0.63rem;padding:5px 9px;}
+  .opt{font-size:0.82rem;}
+  .fi-input{min-width:65px;}
+  #match-container > div{
+    grid-template-columns:1fr !important;
+  }
+  .match-btn{font-size:0.8rem;}
+}
+
+/* ── PRACTICE PANEL — BRIGHT TEXT OVERRIDES ── */
+#panel-practice .card-title{color:#f0f2ff;font-size:1.05rem;}
+#panel-practice .card > p{color:#c8cce8;font-size:0.87rem;line-height:1.6;}
+#panel-practice .card{background:#16192480;border-color:#2a2f48;}
+#panel-practice .sec-desc{color:#9aa0c0;}
+#panel-practice [style*="color:var(--muted)"]{color:#9aa0c0 !important;}
+#panel-practice [style*="font-size:0.78rem;color:var(--muted)"]{color:#9aa0c0 !important;}
+#panel-practice [style*="font-size:0.8rem;color:var(--muted)"]{color:#9aa0c0 !important;}
+#panel-practice .sec-kicker{color:#f0b429 !important;}
+#panel-practice .score-msg{color:#c8cce8;}
+#panel-practice .btn-outline{border-color:#3a4060;color:#9aa0c0;}
+#panel-practice .btn-outline:hover{border-color:var(--gold);color:#ffe082;}
+
+/* Section divider sub-labels */
+#panel-practice [style*="font-size:0.78rem;color"]{color:#9aa0c0 !important;}
+
+/* Rule box text inside practice */
+#panel-practice .rule-box{background:#1a1e2c;}
+#panel-practice .rule-title{color:#f0f2ff;}
+#panel-practice .ex-list li{color:#c8cce8;}
+#panel-practice .ex-list li .hl{color:#7fffc0;}
+
+/* Matching game */
+.match-btn{color:#c8cce8 !important;}
+.match-btn.selecting{color:#ffe082 !important;}
+.match-btn.matched{color:#7fffc0 !important;}
+
+/* p tags inside cards in practice */
+#panel-practice p{color:#c8cce8;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+<div class="site-header">
+  <div class="hdr-top">
+    <div class="hdr-school">
+      <div class="name">Prof. Salah Sahmoudi</div>
+      <div class="sub">Abdellah Guennoun High School · Saïss-Fès</div>
+    </div>
+    <div class="hdr-badge">2nd Baccalaureate</div>
+  </div>
+  <div class="hdr-title"><span>Test Review</span> — Units 5 & 6</div>
+  <div class="unit-tags">
+    <span class="utag utag-u5">Unit 5 · Women in Power</span>
+    <span class="utag utag-u6">Unit 6 · Cultural Issues</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ TABS ═══════════════════════════ -->
+<div class="tabs">
+  <button class="tb active" onclick="goTab('overview',this)">🗺 Overview</button>
+  <button class="tb" onclick="goTab('vocab',this)"><span class="dot dot-u5"></span>Vocabulary</button>
+  <button class="tb" onclick="goTab('passive',this)"><span class="dot dot-u5"></span>Passive Voice</button>
+  <button class="tb" onclick="goTab('concession',this)"><span class="dot dot-u5"></span>Concession</button>
+  <button class="tb" onclick="goTab('phrasal',this)"><span class="dot dot-u6"></span>Phrasal Verbs</button>
+  <button class="tb" onclick="goTab('apologies',this)"><span class="dot dot-u6"></span>Apologies</button>
+  <button class="tb" onclick="goTab('practice',this)">✏️ Practice</button>
+  <button class="tb" onclick="goTab('writing',this)">🖊 Writing</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANEL 1 · OVERVIEW
+══════════════════════════════════════════════════════════ -->
+<div class="panel active" id="panel-overview">
+  <div class="sec-hdr">
+    <div class="sec-kicker" style="color:var(--gold)">📋 What's on the Test</div>
+    <div class="sec-title">Units 5 & 6 — Complete Overview</div>
+    <div class="sec-desc">Review every topic before your test. Use the tabs above to study each section.</div>
+  </div>
+
+  <div class="overview-grid">
+    <div class="ov-card">
+      <div class="ov-unit u5">Unit 5</div>
+      <div class="ov-name">Women in Power</div>
+      <ul class="ov-list">
+        <li>Vocabulary — leadership, empowerment, gender equality</li>
+        <li>Grammar — Passive Voice (present & past)</li>
+        <li>Communication — Concession & Contrast</li>
+        <li>Writing — Argumentative paragraph</li>
+      </ul>
+    </div>
+    <div class="ov-card">
+      <div class="ov-unit u6">Unit 6</div>
+      <div class="ov-name">Cultural Issues</div>
+      <ul class="ov-list">
+        <li>Vocabulary — culture, tolerance, diversity, identity</li>
+        <li>Grammar — Phrasal Verbs</li>
+        <li>Communication — Making Apologies & Complaining</li>
+        <li>Writing — Informal / Personal Letter</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:6px;">
+    <div class="card-title"><span class="ico">💡</span>Test Structure Reminder</div>
+    <div style="font-size:0.85rem;line-height:1.7;color:var(--muted);">
+      Your test follows the standard 2BAC Baccalaureate format:<br>
+      <strong style="color:var(--text)">Part 1 · Reading Comprehension</strong> — True/False, open questions, vocabulary in context<br>
+      <strong style="color:var(--text)">Part 2 · Language Use</strong> — Grammar, functions, and vocabulary exercises<br>
+      <strong style="color:var(--text)">Part 3 · Writing</strong> — Guided paragraph or letter (80–120 words)
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANEL 2 · VOCABULARY
+══════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-vocab">
+  <div class="sec-hdr">
+    <div class="sec-kicker" style="color:var(--u5)">Unit 5 + Unit 6 · Vocabulary</div>
+    <div class="sec-title">Key Words to Know</div>
+    <div class="sec-desc">Tap any card to reveal an example sentence.</div>
+  </div>
+
+  <div class="card-title" style="margin-bottom:8px;color:var(--u5);font-family:'Oswald',sans-serif;font-size:0.9rem;letter-spacing:1px;text-transform:uppercase;">● Unit 5 — Women in Power</div>
+  <div class="v-grid">
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">empowerment</div><div class="v-pos">noun</div>
+      <div class="v-def">The process of giving someone power or authority to take control of their life.</div>
+      <div class="v-ex">"The organisation works on the <em>empowerment</em> of women in rural areas."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">pioneer</div><div class="v-pos">noun / verb</div>
+      <div class="v-def">A person who is among the first to explore or develop a new area.</div>
+      <div class="v-ex">"Marie Curie was a <em>pioneer</em> in the field of radioactivity."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">gender equality</div><div class="v-pos">noun phrase</div>
+      <div class="v-def">The state in which both men and women have equal rights and opportunities.</div>
+      <div class="v-ex">"<em>Gender equality</em> is a key goal of the United Nations."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">breakthrough</div><div class="v-pos">noun</div>
+      <div class="v-def">An important discovery or achievement, especially after a long struggle.</div>
+      <div class="v-ex">"Winning the election was a major <em>breakthrough</em> for women in politics."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">discrimination</div><div class="v-pos">noun</div>
+      <div class="v-def">Unfair treatment of people based on their gender, race, or background.</div>
+      <div class="v-ex">"Laws against gender <em>discrimination</em> protect workers in the workplace."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">leadership</div><div class="v-pos">noun</div>
+      <div class="v-def">The ability to guide or direct a group of people toward a goal.</div>
+      <div class="v-ex">"Her <em>leadership</em> inspired the whole team to succeed."</div>
+    </div>
+  </div>
+
+  <div class="card-title" style="margin:16px 0 8px;color:var(--u6);font-family:'Oswald',sans-serif;font-size:0.9rem;letter-spacing:1px;text-transform:uppercase;">● Unit 6 — Cultural Issues</div>
+  <div class="v-grid">
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">tolerance</div><div class="v-pos">noun</div>
+      <div class="v-def">Willingness to accept behaviour, beliefs, or customs different from your own.</div>
+      <div class="v-ex">"Religious <em>tolerance</em> is essential in a diverse, multicultural society."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">stereotype</div><div class="v-pos">noun / verb</div>
+      <div class="v-def">A fixed, oversimplified image or idea about a particular group of people.</div>
+      <div class="v-ex">"We should avoid <em>stereotyping</em> people based on where they come from."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">heritage</div><div class="v-pos">noun</div>
+      <div class="v-def">The history, traditions, and cultural practices passed down through generations.</div>
+      <div class="v-ex">"Morocco has a rich cultural <em>heritage</em> that attracts visitors worldwide."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">coexistence</div><div class="v-pos">noun</div>
+      <div class="v-def">Living peacefully together, despite differences in beliefs or backgrounds.</div>
+      <div class="v-ex">"Peaceful <em>coexistence</em> between different cultures is possible."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">altruism</div><div class="v-pos">noun</div>
+      <div class="v-def">Selfless concern for the well-being of others.</div>
+      <div class="v-ex">"His <em>altruism</em> showed when he donated all his savings to the community."</div>
+    </div>
+    <div class="v-item" onclick="this.classList.toggle('open')">
+      <div class="v-word">globalisation</div><div class="v-pos">noun</div>
+      <div class="v-def">The process by which the world becomes increasingly connected through trade and culture.</div>
+      <div class="v-ex">"<em>Globalisation</em> has brought both opportunities and challenges to local cultures."</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANEL 3 · PASSIVE VOICE
+══════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-passive">
+  <div class="sec-hdr">
+    <div class="sec-kicker" style="color:var(--u5)">Unit 5 · Grammar</div>
+    <div class="sec-title">The Passive Voice</div>
+    <div class="sec-desc">Used when the action is more important than who does it, or when the agent is unknown.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">📐</span>Passive Tense Reference</div>
+    <table class="pass-table">
+      <thead><tr><th>Tense</th><th>Formula</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="tense-name">Present Simple</span></td>
+          <td><span class="formula-cell">is / are + past participle</span></td>
+          <td>Women <em class="hl">are elected</em> to parliament every year.</td>
+        </tr>
+        <tr>
+          <td><span class="tense-name">Past Simple</span></td>
+          <td><span class="formula-cell">was / were + past participle</span></td>
+          <td>The first female MP <em class="hl">was appointed</em> in 1963.</td>
+        </tr>
+        <tr>
+          <td><span class="tense-name">Present Perfect</span></td>
+          <td><span class="formula-cell">has / have been + past participle</span></td>
+          <td>Many laws <em class="hl">have been changed</em> to protect women.</td>
+        </tr>
+        <tr>
+          <td><span class="tense-name">Future Simple</span></td>
+          <td><span class="formula-cell">will be + past participle</span></td>
+          <td>The new law <em class="hl">will be signed</em> next month.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule-box">
+    <div class="rule-title">🔄 Active → Passive: The Rule</div>
+    <div style="font-size:0.83rem;line-height:1.7;color:var(--muted);">
+      1. The <strong style="color:var(--text)">object</strong> of the active sentence becomes the <strong style="color:var(--text)">subject</strong>.<br>
+      2. The verb changes to <strong style="color:var(--text)">be + past participle</strong>.<br>
+      3. The <strong style="color:var(--text)">agent</strong> (doer) is added with <em style="color:var(--gold)">by</em> — or omitted if unknown/unimportant.
+    </div>
+    <div style="margin-top:10px;">
+      <div style="font-size:0.8rem;color:var(--blue);margin-bottom:4px;">✦ Active:</div>
+      <div style="font-size:0.85rem;padding:7px 12px;background:var(--bg);border-radius:6px;border-left:3px solid var(--blue);">The government <em class="hl">appointed</em> the first female minister in 1985.</div>
+      <div style="font-size:0.8rem;color:var(--purple);margin:8px 0 4px;">✦ Passive:</div>
+      <div style="font-size:0.85rem;padding:7px 12px;background:var(--bg);border-radius:6px;border-left:3px solid var(--purple);">The first female minister <em class="hl">was appointed</em> (by the government) in 1985.</div>
+    </div>
+  </div>
+
+  <div class="rule-box purple">
+    <div class="rule-title">⚠️ Common Mistakes</div>
+    <ul class="ex-list">
+      <li><span style="color:var(--red)">✗</span> The law was <em style="color:var(--red)">change</em> last year. &nbsp;→&nbsp; <span style="color:var(--green)">✓</span> was <em>changed</em></li>
+      <li><span style="color:var(--red)">✗</span> She was <em style="color:var(--red)">elected by</em> in 2022. &nbsp;→&nbsp; <span style="color:var(--green)">✓</span> was <em>elected</em> in 2022 (no agent needed)</li>
+      <li><span style="color:var(--red)">✗</span> The report is <em style="color:var(--red)">wrote</em> by her. &nbsp;→&nbsp; <span style="color:var(--green)">✓</span> is <em>written</em> by her</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANEL 4 · CONCESSION & CONTRAST
+══════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-concession">
+  <div class="sec-hdr">
+    <div class="sec-kicker" style="color:var(--u5)">Unit 5 · Communication</div>
+    <div class="sec-title">Concession & Contrast</div>
+    <div class="sec-desc">Expressing two opposing or contrasting ideas in the same sentence or paragraph.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">📋</span>Connectors Reference Table</div>
+    <table class="con-table">
+      <thead><tr><th>Connector</th><th>Rule / Structure</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="con-word">Although</span><br><span class="con-word">Even though</span></td>
+          <td><span class="con-rule">+ clause (S + V)<br>Can begin or be in the middle</span></td>
+          <td><span class="con-ex"><em>Although</em> women have made progress, inequality still exists.</span></td>
+        </tr>
+        <tr>
+          <td><span class="con-word">Despite</span><br><span class="con-word">In spite of</span></td>
+          <td><span class="con-rule">+ noun / noun phrase<br>+ -ing form</span></td>
+          <td><span class="con-ex"><em>Despite</em> working hard, she was not promoted.</span></td>
+        </tr>
+        <tr>
+          <td><span class="con-word">However</span><br><span class="con-word">Nevertheless</span></td>
+          <td><span class="con-rule">Sentence connector<br>Starts a new sentence, comma after</span></td>
+          <td><span class="con-ex">Progress has been made. <em>However,</em> challenges remain.</span></td>
+        </tr>
+        <tr>
+          <td><span class="con-word">While / Whereas</span></td>
+          <td><span class="con-rule">+ clause<br>Shows direct contrast</span></td>
+          <td><span class="con-ex"><em>While</em> some countries have female leaders, others do not.</span></td>
+        </tr>
+        <tr>
+          <td><span class="con-word">On the other hand</span></td>
+          <td><span class="con-rule">Used to introduce the opposing side in a discussion</span></td>
+          <td><span class="con-ex">Women make excellent leaders. <em>On the other hand,</em> they face more obstacles.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule-box gold">
+    <div class="rule-title">🔑 Key Distinction: Although vs. Despite</div>
+    <ul class="ex-list">
+      <li><em style="color:var(--gold)">Although</em> she worked hard, <em>she didn't get the job.</em> &nbsp;→ followed by a full clause (S+V)</li>
+      <li><em style="color:var(--gold)">Despite</em> working hard, <em>she didn't get the job.</em> &nbsp;→ followed by -ing (no subject)</li>
+      <li><em style="color:var(--gold)">Despite</em> her hard work, <em>she didn't get the job.</em> &nbsp;→ followed by a noun phrase</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANEL 5 · PHRASAL VERBS
+══════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-phrasal">
+  <div class="sec-hdr">
+    <div class="sec-kicker" style="color:var(--u6)">Unit 6 · Grammar</div>
+    <div class="sec-title">Phrasal Verbs</div>
+    <div class="sec-desc">A verb + particle (preposition or adverb) that together create a new meaning.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">📐</span>Types of Phrasal Verbs</div>
+    <div class="rule-box" style="margin-bottom:8px;">
+      <div class="rule-title">Type 1 — Intransitive (no object)</div>
+      <div style="font-size:0.82rem;color:var(--muted);margin-bottom:5px;">These cannot be separated.</div>
+      <ul class="ex-list">
+        <li>The ceremony <em class="hl">broke up</em> late at night. <span style="color:var(--muted);font-size:0.75rem;">(ended)</span></li>
+        <li>She <em class="hl">grew up</em> in a multicultural environment.</li>
+      </ul>
+    </div>
+    <div class="rule-box purple" style="margin-bottom:8px;">
+      <div class="rule-title">Type 2 — Transitive Separable (with object)</div>
+      <div style="font-size:0.82rem;color:var(--muted);margin-bottom:5px;">Object can go between verb and particle, or after it.</div>
+      <ul class="ex-list">
+        <li>They <em class="hl">called off</em> the event. / They called the event <em class="hl">off</em>.</li>
+        <li>She <em class="hl">gave up</em> her old habits to integrate into the new culture.</li>
+      </ul>
+    </div>
+    <div class="rule-box green">
+      <div class="rule-title">Type 3 — Transitive Inseparable (three-part)</div>
+      <div style="font-size:0.82rem;color:var(--muted);margin-bottom:5px;">Object always comes after the particle — cannot be separated.</div>
+      <ul class="ex-list">
+        <li>You should <em class="hl">put up with</em> cultural differences when abroad.</li>
+        <li>Children <em class="hl">look up to</em> their parents as role models.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">📋</span>Unit 6 Phrasal Verbs List</div>
+    <table class="pv-table">
+      <thead><tr><th>Phrasal Verb</th><th>Meaning & Example</th></tr></thead>
+      <tbody>
+        <tr><td><span class="pv">break up</span></td><td><span class="pv-mean">to end (a relationship or event)</span><div class="pv-eg">"The festival <em>broke up</em> after midnight."</div></td></tr>
+        <tr><td><span class="pv">break down</span></td><td><span class="pv-mean">to stop working; to collapse emotionally</span><div class="pv-eg">"Communication <em>broke down</em> between the two communities."</div></td></tr>
+        <tr><td><span class="pv">break into</span></td><td><span class="pv-mean">to enter by force; to start suddenly</span><div class="pv-eg">"He <em>broke into</em> a laugh when he heard the joke."</div></td></tr>
+        <tr><td><span class="pv">call off</span></td><td><span class="pv-mean">to cancel</span><div class="pv-eg">"They had to <em>call off</em> the cultural event due to rain."</div></td></tr>
+        <tr><td><span class="pv">put up with</span></td><td><span class="pv-mean">to tolerate</span><div class="pv-eg">"It is hard to <em>put up with</em> prejudice and stereotypes."</div></td></tr>
+        <tr><td><span class="pv">look up to</span></td><td><span class="pv-mean">to admire and respect</span><div class="pv-eg">"Young people <em>look up to</em> cultural icons and pioneers."</div></td></tr>
+        <tr><td><span class="pv">get along with</span></td><td><span class="pv-mean">to have a good relationship with</span><div class="pv-eg">"People from different cultures can <em>get along with</em> each other."</div></td></tr>
+        <tr><td><span class="pv">give up</span></td><td><span class="pv-mean">to stop doing something; to abandon</span><div class="pv-eg">"She refused to <em>give up</em> her cultural identity."</div></td></tr>
+        <tr><td><span class="pv">stand up for</span></td><td><span class="pv-mean">to defend or support</span><div class="pv-eg">"We must <em>stand up for</em> human rights and equality."</div></td></tr>
+        <tr><td><span class="pv">take after</span></td><td><span class="pv-mean">to resemble in appearance or behaviour</span><div class="pv-eg">"She <em>takes after</em> her grandmother in her love of tradition."</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANEL 6 · MAKING APOLOGIES
+══════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-apologies">
+  <div class="sec-hdr">
+    <div class="sec-kicker" style="color:var(--u6)">Unit 6 · Communication</div>
+    <div class="sec-title">Making Apologies & Complaining</div>
+    <div class="sec-desc">Key expressions for expressing regret and making/responding to complaints politely.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">🙏</span>Making an Apology</div>
+    <table class="fn-table">
+      <thead><tr><th>Function</th><th>Expressions</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="fn-cat">Apologising</span></td>
+          <td>
+            <span class="fn-expr">I'm (really/truly/so) sorry for …</span><br>
+            <span class="fn-expr">I sincerely apologise for …</span><br>
+            <span class="fn-expr">Please accept my apologies for …</span><br>
+            <span class="fn-expr">I apologise for any inconvenience caused.</span><br>
+            <span class="fn-expr">I'm afraid I owe you an apology.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="fn-cat">Explaining / Giving a reason</span></td>
+          <td>
+            <span class="fn-expr">The reason was that …</span><br>
+            <span class="fn-expr">It happened because …</span><br>
+            <span class="fn-expr">Unfortunately, I was not aware that …</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="fn-cat">Making a promise</span></td>
+          <td>
+            <span class="fn-expr">I promise it won't happen again.</span><br>
+            <span class="fn-expr">I will make sure this doesn't happen again.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="fn-cat">Offering a solution</span></td>
+          <td>
+            <span class="fn-expr">To make up for this, I would like to …</span><br>
+            <span class="fn-expr">I would be happy to …</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="fn-cat">Accepting an apology</span></td>
+          <td>
+            <span class="fn-expr">That's all right. / No problem. / Don't worry about it.</span><br>
+            <span class="fn-expr">I quite understand.</span><br>
+            <span class="fn-expr">Apology accepted.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">😤</span>Making a Complaint</div>
+    <table class="fn-table">
+      <thead><tr><th>Register</th><th>Expressions</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="fn-cat" style="color:var(--blue)">Polite / Formal</span></td>
+          <td>
+            <span class="fn-expr">I'm afraid there is a problem with …</span><br>
+            <span class="fn-expr">I must say I was quite surprised / disappointed by …</span><br>
+            <span class="fn-expr">I wonder if you could explain why …</span><br>
+            <span class="fn-expr">I find it rather unacceptable that …</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="fn-cat" style="color:var(--purple)">Informal</span></td>
+          <td>
+            <span class="fn-expr">I'm not happy about …</span><br>
+            <span class="fn-expr">I can't stand it when …</span><br>
+            <span class="fn-expr">It really bothers me that …</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span class="fn-cat" style="color:var(--green)">Responding to a complaint</span></td>
+          <td>
+            <span class="fn-expr">You're absolutely right, and I'm sorry about that.</span><br>
+            <span class="fn-expr">I do apologise. I'll look into it immediately.</span><br>
+            <span class="fn-expr">I understand your concern. Let me explain …</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule-box gold">
+    <div class="rule-title">✉️ In a Letter — How to Structure an Apology</div>
+    <div style="font-size:0.83rem;line-height:1.9;color:var(--muted);">
+      <strong style="color:var(--gold)">1. Acknowledge the problem:</strong> <em style="color:var(--text)">I am writing to apologise for …</em><br>
+      <strong style="color:var(--gold)">2. Explain the reason:</strong> <em style="color:var(--text)">The reason for this was that …</em><br>
+      <strong style="color:var(--gold)">3. Express regret:</strong> <em style="color:var(--text)">I am truly sorry for any trouble this may have caused.</em><br>
+      <strong style="color:var(--gold)">4. Offer a solution or promise:</strong> <em style="color:var(--text)">I promise to … / To make up for this …</em><br>
+      <strong style="color:var(--gold)">5. Close politely:</strong> <em style="color:var(--text)">I hope you will accept my apology.</em>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANEL 7 · PRACTICE  (expanded — 5 sub-sections)
+══════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-practice">
+  <div class="sec-hdr">
+    <div class="sec-kicker" style="color:var(--gold)">✏️ Intensive Practice</div>
+    <div class="sec-title">Test Practice — Units 5 & 6</div>
+    <div class="sec-desc">Five focused sections covering every topic tested. Work through them all to prepare.</div>
+  </div>
+
+  <!-- SUB-NAV -->
+  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;">
+    <button class="btn btn-outline" onclick="scrollTo('#sec-passive-p')" style="font-size:0.72rem;padding:6px 13px;">🔵 Passive Voice</button>
+    <button class="btn btn-outline" onclick="scrollTo('#sec-concession-p')" style="font-size:0.72rem;padding:6px 13px;">🟢 Concession</button>
+    <button class="btn btn-outline" onclick="scrollTo('#sec-phrasal-p')" style="font-size:0.72rem;padding:6px 13px;">🟣 Phrasal Verbs</button>
+    <button class="btn btn-outline" onclick="scrollTo('#sec-apology-p')" style="font-size:0.72rem;padding:6px 13px;">🟡 Apologies</button>
+    <button class="btn btn-outline" onclick="scrollTo('#sec-mock-p')" style="font-size:0.72rem;padding:6px 13px;">🔴 Mock Test</button>
+  </div>
+
+  <!-- ═══ SECTION 1 · PASSIVE VOICE ═══ -->
+  <div id="sec-passive-p" style="border-left:3px solid var(--u5);padding-left:12px;margin-bottom:6px;">
+    <div style="font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;color:var(--u5);margin-bottom:2px;">🔵 Section 1 — Passive Voice</div>
+    <div style="font-size:0.78rem;color:var(--muted);">Active → Passive conversion, tense recognition, and gap-fill.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">❓</span>A1 — Choose the correct passive form</div>
+    <div id="p1-mcq"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenMCQ('p1')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenMCQ('p1')">Reset</button>
+    </div>
+    <div class="score-box" id="p1-score"><div class="score-big" id="p1-score-num">—</div><div class="score-msg" id="p1-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">✍️</span>A2 — Write the passive form of the verb in brackets</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:10px;">Write the correct passive form. Pay attention to the tense.</p>
+    <div id="p1-fill"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenFill('p1f')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenFill('p1f')">Reset</button>
+    </div>
+    <div class="score-box" id="p1f-score"><div class="score-big" id="p1f-score-num">—</div><div class="score-msg" id="p1f-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">🔄</span>A3 — Rewrite in the passive voice</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:12px;">Change these active sentences to passive. Omit the agent where unnecessary.</p>
+    <div id="p1-tx"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="showTX('p1t')">Show Answers</button>
+      <button class="btn btn-outline" onclick="hideTX('p1t')">Hide</button>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 2 · CONCESSION ═══ -->
+  <div id="sec-concession-p" style="border-left:3px solid var(--green);padding-left:12px;margin:20px 0 6px;">
+    <div style="font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;color:var(--green);margin-bottom:2px;">🟢 Section 2 — Concession & Contrast</div>
+    <div style="font-size:0.78rem;color:var(--muted);">Choosing the right connector and sentence transformation.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">❓</span>B1 — Choose the correct connector</div>
+    <div id="p2-mcq"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenMCQ('p2')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenMCQ('p2')">Reset</button>
+    </div>
+    <div class="score-box" id="p2-score"><div class="score-big" id="p2-score-num">—</div><div class="score-msg" id="p2-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">✍️</span>B2 — Fill in with the correct concession word</div>
+    <div class="wbank" style="margin-bottom:12px;">
+      <span class="wb-chip">Although</span><span class="wb-chip">Despite</span><span class="wb-chip">However</span>
+      <span class="wb-chip">In spite of</span><span class="wb-chip">Nevertheless</span><span class="wb-chip">Whereas</span>
+      <span class="wb-chip">Even though</span><span class="wb-chip">On the other hand</span>
+    </div>
+    <div id="p2-fill"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenFill('p2f')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenFill('p2f')">Reset</button>
+    </div>
+    <div class="score-box" id="p2f-score"><div class="score-big" id="p2f-score-num">—</div><div class="score-msg" id="p2f-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">🔄</span>B3 — Sentence Transformation (Concession)</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:12px;">Rewrite using the word in capitals. Keep the same meaning.</p>
+    <div id="p2-tx"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="showTX('p2t')">Show Answers</button>
+      <button class="btn btn-outline" onclick="hideTX('p2t')">Hide</button>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 3 · PHRASAL VERBS ═══ -->
+  <div id="sec-phrasal-p" style="border-left:3px solid var(--u6);padding-left:12px;margin:20px 0 6px;">
+    <div style="font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;color:var(--u6);margin-bottom:2px;">🟣 Section 3 — Phrasal Verbs</div>
+    <div style="font-size:0.78rem;color:var(--muted);">Meaning recognition, gap-fill, and context sentences.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">❓</span>C1 — Choose the correct phrasal verb</div>
+    <div id="p3-mcq"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenMCQ('p3')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenMCQ('p3')">Reset</button>
+    </div>
+    <div class="score-box" id="p3-score"><div class="score-big" id="p3-score-num">—</div><div class="score-msg" id="p3-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">✍️</span>C2 — Complete with the correct phrasal verb</div>
+    <div class="wbank" style="margin-bottom:12px;">
+      <span class="wb-chip">broke down</span><span class="wb-chip">called off</span><span class="wb-chip">put up with</span>
+      <span class="wb-chip">look up to</span><span class="wb-chip">get along with</span><span class="wb-chip">gave up</span>
+      <span class="wb-chip">stand up for</span><span class="wb-chip">takes after</span><span class="wb-chip">break into</span><span class="wb-chip">grew up</span>
+    </div>
+    <div id="p3-fill"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenFill('p3f')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenFill('p3f')">Reset</button>
+    </div>
+    <div class="score-box" id="p3f-score"><div class="score-big" id="p3f-score-num">—</div><div class="score-msg" id="p3f-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">🔗</span>C3 — Match the phrasal verb to its meaning</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:12px;">Tap a phrasal verb, then tap its matching definition.</p>
+    <div id="match-container"></div>
+    <div class="btn-row" style="margin-top:8px;">
+      <button class="btn btn-outline" onclick="resetMatch()">Reset</button>
+    </div>
+    <div class="score-box" id="match-score"><div class="score-big" id="match-score-num">—</div><div class="score-msg" id="match-score-msg"></div></div>
+  </div>
+
+  <!-- ═══ SECTION 4 · APOLOGIES ═══ -->
+  <div id="sec-apology-p" style="border-left:3px solid var(--gold);padding-left:12px;margin:20px 0 6px;">
+    <div style="font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;color:var(--gold);margin-bottom:2px;">🟡 Section 4 — Making Apologies</div>
+    <div style="font-size:0.78rem;color:var(--muted);">Expression selection, dialogue completion, and function labelling.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">❓</span>D1 — Choose the most appropriate expression</div>
+    <div id="p4-mcq"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenMCQ('p4')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenMCQ('p4')">Reset</button>
+    </div>
+    <div class="score-box" id="p4-score"><div class="score-big" id="p4-score-num">—</div><div class="score-msg" id="p4-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">💬</span>D2 — Complete the dialogue</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:12px;">Fill in each gap with the most suitable apology or complaint expression.</p>
+    <div id="p4-fill"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenFill('p4f')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenFill('p4f')">Reset</button>
+    </div>
+    <div class="score-box" id="p4f-score"><div class="score-big" id="p4f-score-num">—</div><div class="score-msg" id="p4f-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">🏷️</span>D3 — Identify the function</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:12px;">What is the speaker doing? Choose the correct function label.</p>
+    <div id="p4-func"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenMCQ('p4func')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenMCQ('p4func')">Reset</button>
+    </div>
+    <div class="score-box" id="p4func-score"><div class="score-big" id="p4func-score-num">—</div><div class="score-msg" id="p4func-score-msg"></div></div>
+  </div>
+
+  <!-- ═══ SECTION 5 · MOCK TEST ═══ -->
+  <div id="sec-mock-p" style="border-left:3px solid var(--red);padding-left:12px;margin:20px 0 6px;">
+    <div style="font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;color:var(--red);margin-bottom:2px;">🔴 Section 5 — Mixed Mock Test</div>
+    <div style="font-size:0.78rem;color:var(--muted);">Simulates the Language Use section of your test. All topics mixed. No hints.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">📋</span>Exercise 1 — Choose the correct option (10 questions)</div>
+    <div id="mock-mcq"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenMCQ('mock')">Check All</button>
+      <button class="btn btn-outline" onclick="resetGenMCQ('mock')">Reset</button>
+    </div>
+    <div class="score-box" id="mock-score"><div class="score-big" id="mock-score-num">—</div><div class="score-msg" id="mock-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">✍️</span>Exercise 2 — Fill in the blanks (10 sentences)</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:10px;">Use the correct form of the word or expression needed. No word bank.</p>
+    <div id="mock-fill"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="checkGenFill('mockf')">Check</button>
+      <button class="btn btn-outline" onclick="resetGenFill('mockf')">Reset</button>
+    </div>
+    <div class="score-box" id="mockf-score"><div class="score-big" id="mockf-score-num">—</div><div class="score-msg" id="mockf-score-msg"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">🔄</span>Exercise 3 — Sentence Transformation (8 sentences)</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:12px;">Rewrite each sentence using the word in capitals without changing the meaning.</p>
+    <div id="mock-tx"></div>
+    <div class="btn-row">
+      <button class="btn btn-gold" onclick="showTX('mockt')">Show Model Answers</button>
+      <button class="btn btn-outline" onclick="hideTX('mockt')">Hide</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PANEL 8 · WRITING
+══════════════════════════════════════════════════════════ -->
+<div class="panel" id="panel-writing">
+  <div class="sec-hdr">
+    <div class="sec-kicker" style="color:var(--u6)">Unit 6 · Writing</div>
+    <div class="sec-title">Informal Letter — Apology</div>
+    <div class="sec-desc">Review the structure and language for writing a personal letter of apology.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="ico">📄</span>Letter Structure</div>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px;font-size:0.83rem;line-height:1.9;">
+      <div style="text-align:right;color:var(--muted);">[Your address]<br>Fès, March 2026</div>
+      <br>
+      <div style="color:var(--muted);">Dear [Name],</div><br>
+      <div style="border-left:3px solid var(--u6);padding-left:10px;color:var(--text);">
+        <strong style="color:var(--u6);">¶1 — Opening + Reason for writing:</strong><br>
+        <em>I am writing to apologise for … / I feel I owe you an apology for …</em>
+      </div><br>
+      <div style="border-left:3px solid var(--blue);padding-left:10px;color:var(--text);">
+        <strong style="color:var(--blue);">¶2 — Explanation:</strong><br>
+        <em>The reason was that … / Unfortunately, I had not realised that …</em>
+      </div><br>
+      <div style="border-left:3px solid var(--gold);padding-left:10px;color:var(--text);">
+        <strong style="color:var(--gold);">¶3 — Promise / Solution:</strong><br>
+        <em>I promise this won't happen again. / To make up for this, I would like to …</em>
+      </div><br>
+      <div style="border-left:3px solid var(--green);padding-left:10px;color:var(--text);">
+        <strong style="color:var(--green);">¶4 — Closing:</strong><br>
+        <em>I hope you will forgive me. / I hope we can put this behind us.</em>
+      </div><br>
+      <div style="color:var(--muted);">Yours sincerely / Best regards,<br>[Your name]</div>
+    </div>
+  </div>
+
+  <div class="writing-prompt">
+    <div class="label">📝 Writing Task</div>
+    <div class="prompt-text">
+      Your British pen friend visited your family in Morocco last month. During the visit, you accidentally broke something valuable that belonged to them. Write a letter of apology (80–120 words) in which you:
+      <ul style="margin-top:8px;padding-left:18px;font-size:0.85rem;line-height:1.8;">
+        <li>Apologise and acknowledge what happened</li>
+        <li>Explain why or how it happened</li>
+        <li>Offer to replace or make up for it</li>
+        <li>End positively</li>
+      </ul>
+    </div>
+    <div class="lang-bank">
+      <div class="lb-title">Language Bank</div>
+      <div class="lb-chips">
+        <span class="lb-chip">I'm writing to apologise for …</span>
+        <span class="lb-chip">I'm truly sorry about …</span>
+        <span class="lb-chip">I hadn't realised that …</span>
+        <span class="lb-chip">To make up for this …</span>
+        <span class="lb-chip">It won't happen again</span>
+        <span class="lb-chip">Despite being careful …</span>
+        <span class="lb-chip">Please accept my apologies</span>
+        <span class="lb-chip">I hope you will forgive me</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:0;">
+    <div class="card-title"><span class="ico">✅</span>Writing Checklist</div>
+    <div id="checklist"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>Prof. Salah Sahmoudi &nbsp;·&nbsp; Abdellah Guennoun High School, Saïss-Fès &nbsp;·&nbsp; 2BAC Test Review — Units 5 & 6</footer>
+
+<script>
+// -- TAB NAVIGATION --
+function goTab(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tb').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function scrollTo(sel) {
+  const el = document.querySelector(sel);
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+// --------------------------------------------
+// ALL EXERCISE DATA
+// --------------------------------------------
+
+// -- SECTION 1: PASSIVE VOICE --
+const p1McqData = [
+  { q:"The new gender equality law ________ by parliament last year.",
+    opts:["was passed","is passed","were passed","passed"], ans:0,
+    fb:"<strong>was passed</strong>  -- Past Simple Passive: was + past participle." },
+  { q:"Women in many countries ________ the right to vote until the 20th century.",
+    opts:["were not given","was not given","are not giving","have not give"], ans:0,
+    fb:"<strong>were not given</strong>  -- Past Simple Passive, negative form." },
+  { q:"Several important reports on gender equality ________ this year.",
+    opts:["has published","have been published","were publishing","are publish"], ans:1,
+    fb:"<strong>have been published</strong>  -- Present Perfect Passive: have been + past participle." },
+  { q:"The prize ________ to Malala Yousafzai for her courage and activism.",
+    opts:["was awarded","is award","awarded","were awarded"], ans:0,
+    fb:"<strong>was awarded</strong>  -- Past Simple Passive. Subject (the prize) is singular." },
+  { q:"Every year, thousands of women ________ from their jobs because of discrimination.",
+    opts:["are dismissing","are dismissed","were dismiss","dismiss"], ans:1,
+    fb:"<strong>are dismissed</strong>  -- Present Simple Passive: are + past participle." },
+  { q:"A new women's centre ________ in our city next year.",
+    opts:["will build","will be building","will be built","is build"], ans:2,
+    fb:"<strong>will be built</strong>  -- Future Simple Passive: will be + past participle." },
+];
+
+const p1FillData = [
+  { pre:"The Equal Pay Act", post:"in many countries to protect women's rights.", ans:"was introduced", alts:["was passed","was signed"] },
+  { pre:"Thousands of books about women in politics", post:"every year.", ans:"are published" },
+  { pre:"The first female prime minister", post:"by a majority of voters.", ans:"was elected" },
+  { pre:"New laws to fight gender discrimination", post:"by the government last month.", ans:"were adopted", alts:["were passed","were introduced"] },
+  { pre:"Many cultural traditions", post:"from generation to generation.", ans:"are passed down", alts:["have been passed down"] },
+  { pre:"The women's rights conference", post:"due to bad weather, but it has been rescheduled.", ans:"was cancelled", alts:["was called off"] },
+  { pre:"Great progress", post:"in the fight for gender equality over the past century.", ans:"has been made" },
+  { pre:"The award for best cultural film", post:"to a Moroccan director.", ans:"was given", alts:["was awarded"] },
+];
+
+const p1TxData = [
+  { given:"Millions of people around the world read her book.", key:"WAS READ",
+    model:"Her book was read by millions of people around the world." },
+  { given:"The government has introduced new laws to protect women's rights.", key:"HAVE BEEN",
+    model:"New laws to protect women's rights have been introduced by the government." },
+  { given:"They will build a new cultural centre next year.", key:"WILL BE",
+    model:"A new cultural centre will be built next year." },
+  { given:"People did not respect women's rights in the past.", key:"WERE NOT",
+    model:"Women's rights were not respected in the past." },
+  { given:"The committee selected three female candidates.", key:"WERE",
+    model:"Three female candidates were selected by the committee." },
+];
+
+// -- SECTION 2: CONCESSION --
+const p2McqData = [
+  { q:"________ being talented, she was not promoted to a leadership position.",
+    opts:["Although","Despite","However","Whereas"], ans:1,
+    fb:"<strong>Despite</strong> + -ing form (verb acting as noun). 'Although' needs a subject + verb." },
+  { q:"Gender equality is important. ________, progress has been slow in some regions.",
+    opts:["Despite","Although","Nevertheless","In spite of"], ans:2,
+    fb:"<strong>Nevertheless</strong> (and 'However') are sentence connectors  -- they start a new sentence after a full stop." },
+  { q:"________ women make up half the population, they hold fewer than 30% of political positions globally.",
+    opts:["Despite","In spite of","Even though","Nevertheless"], ans:2,
+    fb:"<strong>Even though</strong> (like 'although') is followed by a full clause (subject + verb)." },
+  { q:"________ the challenges, she became the first female president of the country.",
+    opts:["Although","Even though","Despite","Whereas"], ans:2,
+    fb:"<strong>Despite</strong> + noun phrase ('the challenges')." },
+  { q:"Some cultures celebrate women in power. ________, others still resist the idea.",
+    opts:["Although","Despite","While","On the other hand"], ans:3,
+    fb:"<strong>On the other hand</strong> introduces the contrasting side in an argument  -- starts a new sentence." },
+  { q:"________ Morocco has made progress in women's rights, more reforms are still needed.",
+    opts:["Despite","In spite of","Although","Nevertheless"], ans:2,
+    fb:"<strong>Although</strong> + full clause (subject + verb)." },
+  { q:"She trained for years. ________, she was not selected for the team.",
+    opts:["Despite","Although","However","In spite of"], ans:2,
+    fb:"<strong>However</strong> is a sentence connector. It follows a full stop and a comma follows it." },
+  { q:"________ her young age, she has achieved more than most people twice her age.",
+    opts:["Although","Even though","In spite of","Whereas"], ans:2,
+    fb:"<strong>In spite of</strong> + noun phrase ('her young age') = same as 'Despite'." },
+];
+
+const p2FillData = [
+  { pre:"", post:"she had little support, she won the election.", ans:"Although", alts:["Even though"] },
+  { pre:"", post:"the difficulties, she never stopped fighting for equality.", ans:"Despite", alts:["In spite of"] },
+  { pre:"He apologised.", post:", she was still upset about the incident.", ans:"However", alts:["Nevertheless"] },
+  { pre:"", post:"her lack of experience, she was appointed director.", ans:"Despite", alts:["In spite of"] },
+  { pre:"Men often dominate politics.", post:", women are increasingly taking leadership roles.", ans:"However", alts:["Nevertheless","On the other hand"] },
+  { pre:"", post:"facing discrimination, she became one of the most influential women in history.", ans:"Despite", alts:["In spite of"] },
+  { pre:"Some men support gender equality.", post:", others are resistant to change.", ans:"Whereas", alts:["While","On the other hand,"] },
+  { pre:"", post:"the new law was passed, discrimination in the workplace continues.", ans:"Although", alts:["Even though"] },
+];
+
+const p2TxData = [
+  { given:"She had little money. But she built a successful business.", key:"DESPITE",
+    model:"Despite having little money, she built a successful business." },
+  { given:"Although she apologised, the situation was still tense.", key:"IN SPITE OF",
+    model:"In spite of her apology, the situation was still tense." },
+  { given:"Women have made progress. But challenges remain.", key:"HOWEVER",
+    model:"Women have made progress. However, challenges remain." },
+  { given:"Even though he was against it, the law was passed.", key:"DESPITE",
+    model:"Despite his opposition, the law was passed." },
+  { given:"Men earn more than women, but women work just as hard.", key:"WHEREAS",
+    model:"Whereas women work just as hard, men earn more." },
+  { given:"The conference was successful despite the bad weather.", key:"ALTHOUGH",
+    model:"Although the weather was bad, the conference was successful." },
+];
+
+// -- SECTION 3: PHRASAL VERBS --
+const p3McqData = [
+  { q:"We had to ________ the match because of the rain.",
+    opts:["call off","hand out","look after","put on"], ans:0,
+    fb:"<strong>call off</strong> = cancel. E.g. They called off the trip." },
+  { q:"Please ________ your homework before you leave.",
+    opts:["set off","hand in","turn on","give up"], ans:1,
+    fb:"<strong>hand in</strong> = submit work to a teacher." },
+  { q:"Can you ________ the word in the dictionary?",
+    opts:["look up","give in","take off","carry on"], ans:0,
+    fb:"<strong>look up</strong> = search for information." },
+  { q:"The prices of vegetables have ________ again this month.",
+    opts:["gone up","handed out","put off","broken down"], ans:0,
+    fb:"<strong>gone up</strong> = increased. The opposite is <em>gone down</em>." },
+  { q:"She ________ her illness quickly and came back to school.",
+    opts:["gave up","set up","got over","carried on"], ans:2,
+    fb:"<strong>got over</strong> = recovered from. E.g. He got over the flu." },
+  { q:"The teacher ________ the worksheets at the start of the lesson.",
+    opts:["handed out","looked after","set off","worked out"], ans:0,
+    fb:"<strong>handed out</strong> = distributed to everyone." },
+  { q:"I wanted to stop eating junk food, so I ________ it.",
+    opts:["turned down","gave up","put off","showed up"], ans:1,
+    fb:"<strong>gave up</strong> = stopped doing something voluntarily." },
+  { q:"The plane will ________ in twenty minutes, so please fasten your seatbelts.",
+    opts:["set up","take off","turn up","come across"], ans:1,
+    fb:"<strong>take off</strong> = when a plane leaves the ground; also to remove clothing." },
+  { q:"She ________ an old photograph while cleaning her room.",
+    opts:["came across","ran out of","showed up","picked up"], ans:0,
+    fb:"<strong>came across</strong> = found by chance, unexpectedly." },
+  { q:"We ________ time during the exam and could not finish the last question.",
+    opts:["broke down","ran out of","put off","went on"], ans:1,
+    fb:"<strong>ran out of</strong> = had no more left. E.g. We ran out of paper." },
+];
+
+const p3FillData = [
+  { pre:"I decided to", post:"smoking because it was harming my health.", ans:"give up" },
+  { pre:"The school had to", post:"the cultural trip because of the rain.", ans:"call off" },
+  { pre:"Please", post:"your assignments before Friday.", ans:"hand in" },
+  { pre:"The teacher", post:"the exam papers at the beginning of the test.", ans:"handed out", alts:["hand out"] },
+  { pre:"Prices of food have", post:"significantly over the past year.", ans:"gone up", alts:["go up"] },
+  { pre:"Can you", post:"that word in the dictionary?", ans:"look up" },
+  { pre:"She", post:"her father in her love of music.", ans:"takes after" },
+  { pre:"He finally", post:"the flu after two weeks.", ans:"got over" },
+  { pre:"The negotiations", post:"after the two sides could not agree.", ans:"broke down" },
+  { pre:"I", post:"an interesting article about cultural issues.", ans:"came across" },
+];
+
+// Matching game data - using the full phrasal verbs from the lesson
+const matchData = [
+  { pv:"give up",    def:"stop doing something; quit" },
+  { pv:"call off",   def:"cancel a plan or event" },
+  { pv:"hand in",    def:"submit work to a teacher" },
+  { pv:"hand out",   def:"distribute to a group" },
+  { pv:"look up",    def:"search for information" },
+  { pv:"take off",   def:"leave the ground; remove clothing" },
+  { pv:"put off",    def:"delay or postpone" },
+  { pv:"get over",   def:"recover from illness or difficulty" },
+];
+
+let matchSelected = null;
+let matchSolved = 0;
+
+function buildMatch() {
+  matchSelected = null; matchSolved = 0;
+  const pvs = [...matchData].sort(() => Math.random() - 0.5);
+  const defs = [...matchData].sort(() => Math.random() - 0.5);
+  const c = document.getElementById('match-container');
+  c.innerHTML = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+    <div id="match-pvs">${pvs.map((d,i)=>`<div class="match-btn" id="mpv-${d.pv.replace(/ /g,'_')}" onclick="pickMatch('pv','${d.pv.replace(/ /g,'_')}',this)">${d.pv}</div>`).join('')}</div>
+    <div id="match-defs">${defs.map((d,i)=>`<div class="match-btn" id="mdf-${d.pv.replace(/ /g,'_')}" onclick="pickMatch('def','${d.pv.replace(/ /g,'_')}',this)">${d.def}</div>`).join('')}</div>
+  </div>`;
+  document.getElementById('match-score').style.display='none';
+}
+
+function pickMatch(type, key, el) {
+  if (el.classList.contains('matched')) return;
+  if (!matchSelected) {
+    document.querySelectorAll('.match-btn.selecting').forEach(b=>b.classList.remove('selecting'));
+    matchSelected = {type, key, el};
+    el.classList.add('selecting');
+  } else {
+    if (matchSelected.type === type) {
+      matchSelected.el.classList.remove('selecting');
+      matchSelected = {type, key, el};
+      el.classList.add('selecting');
+      return;
+    }
+    const a = matchSelected, b = {type, key, el};
+    matchSelected.el.classList.remove('selecting');
+    matchSelected = null;
+    if (a.key === b.key) {
+      a.el.classList.add('matched'); b.el.classList.add('matched');
+      matchSolved++;
+      if (matchSolved === matchData.length) {
+        const box = document.getElementById('match-score');
+        box.style.display='block';
+        document.getElementById('match-score-num').textContent = '8 / 8';
+        document.getElementById('match-score-msg').textContent = 'All matched! Perfect!  ';
+      }
+    } else {
+      a.el.classList.add('wrong-flash'); b.el.classList.add('wrong-flash');
+      setTimeout(()=>{ a.el.classList.remove('wrong-flash'); b.el.classList.remove('wrong-flash'); }, 600);
+    }
+  }
+}
+
+function resetMatch() { buildMatch(); }
+
+// -- SECTION 4: APOLOGIES --
+const p4McqData = [
+  { q:"You accidentally broke your friend's phone. What do you say?",
+    opts:["I'm afraid there is a problem.","I sincerely apologise for breaking your phone.","I wonder if you could explain.","Apology accepted."], ans:1,
+    fb:"<strong>I sincerely apologise for + -ing</strong> is the correct structure for a formal apology." },
+  { q:"Your friend apologises for being late. You want to accept the apology. You say:",
+    opts:["I find it rather unacceptable.","Please accept my apologies.","That's all right, don't worry about it.","I must say I was quite surprised."], ans:2,
+    fb:"<strong>That's all right, don't worry about it.</strong> = accepting an apology warmly." },
+  { q:"You want to complain politely to a shopkeeper. You say:",
+    opts:["I can't stand this!","I'm afraid there is a problem with the item I bought.","I'm truly sorry if I offended you.","To make up for this, I would like to refund you."], ans:1,
+    fb:"<strong>I'm afraid there is a problem with  </strong> is the standard polite complaint opening." },
+  { q:"After apologising, you want to offer a solution. You say:",
+    opts:["I promise it won't happen again.","I quite understand.","To make up for this, I would like to replace it.","I'm not happy about this."], ans:2,
+    fb:"<strong>To make up for this, I would like to  </strong> = offering a solution or compensation." },
+  { q:"You are writing a formal apology letter. The best opening line is:",
+    opts:["I'm writing to say sorry.","I am writing to sincerely apologise for the misunderstanding.","Please don't be angry with me.","It wasn't really my fault."], ans:1,
+    fb:"Formal letters use <strong>I am writing to sincerely apologise for + noun/gerund</strong>." },
+  { q:"A classmate keeps interrupting you. You complain informally. You say:",
+    opts:["I sincerely apologise for interrupting.","I'm afraid I find it unacceptable.","It really bothers me when you interrupt.","I do apologise. I'll look into it."], ans:2,
+    fb:"<strong>It really bothers me when  </strong> is an informal way of expressing a complaint." },
+];
+
+const p4FillData = [
+  { pre:"I am writing to", post:"for the trouble I caused during the cultural visit.", ans:"apologise", alts:["sincerely apologise"] },
+  { pre:"", post:"accept my apologies for the misunderstanding.", ans:"Please" },
+  { pre:"I'm truly sorry", post:"I offended you with my comments.", ans:"if" },
+  { pre:"To make up", post:"this, I would like to offer you a replacement.", ans:"for" },
+  { pre:"I promise this", post:"happen again.", ans:"won't" },
+  { pre:"I'm afraid", post:"is a problem with the service I received.", ans:"there" },
+  { pre:"I quite", post:"why you are upset, and I take full responsibility.", ans:"understand" },
+  { pre:"I owe you an", post:"for what happened at the festival.", ans:"apology" },
+];
+
+const p4FuncData = [
+  { q:`"I'm afraid I find your behaviour rather disrespectful."`,
+    opts:["Making an apology","Accepting an apology","Making a complaint","Offering a solution"], ans:2,
+    fb:"<strong>Making a complaint</strong>  -- 'I'm afraid I find   rather  ' is a polite complaint formula." },
+  { q:`"I sincerely apologise for arriving late to the ceremony."`,
+    opts:["Accepting an apology","Making an apology","Making a complaint","Making a promise"], ans:1,
+    fb:"<strong>Making an apology</strong>  -- 'I sincerely apologise for + -ing'." },
+  { q:`"That's all right. Don't worry about it."`,
+    opts:["Making a complaint","Making a promise","Making an apology","Accepting an apology"], ans:3,
+    fb:"<strong>Accepting an apology</strong>  -- this is the standard accepting expression." },
+  { q:`"I promise it won't happen again."`,
+    opts:["Making a complaint","Making a promise","Offering a solution","Accepting an apology"], ans:1,
+    fb:"<strong>Making a promise</strong>  -- common after an apology to reassure the other person." },
+  { q:`"To make up for this, I would like to replace your book."`,
+    opts:["Making a complaint","Making a promise","Offering a solution","Making an apology"], ans:2,
+    fb:"<strong>Offering a solution</strong>  -- 'To make up for this' introduces compensation." },
+  { q:`"I must say I was quite disappointed by your behaviour."`,
+    opts:["Making an apology","Accepting an apology","Making a promise","Making a complaint"], ans:3,
+    fb:"<strong>Making a complaint</strong>  -- 'I must say I was quite disappointed by  ' is a formal complaint." },
+];
+
+// -- MOCK TEST --
+const mockMcqData = [
+  { q:"The historic agreement on women's rights ________ by all nations in 1979.",
+    opts:["was signed","is signed","were signed","signing"], ans:0,
+    fb:"<strong>was signed</strong>  -- Past Simple Passive: subject (the agreement) is singular." },
+  { q:"________ the progress made, gender discrimination still exists in the workplace.",
+    opts:["Although","Even though","Despite","Whereas"], ans:2,
+    fb:"<strong>Despite</strong> + noun phrase ('the progress made')." },
+  { q:"The young musician ________ his father  -- both are talented composers.",
+    opts:["looks up to","takes after","stands up for","gets along with"], ans:1,
+    fb:"<strong>takes after</strong> = to resemble a family member in character or appearance." },
+  { q:"She was late to the meeting. She said: '________ being late. It won't happen again.'",
+    opts:["I'm afraid of","I sincerely apologise for","Please complain about","I quite understand"], ans:1,
+    fb:"<strong>I sincerely apologise for + -ing</strong> is the correct structure for an apology." },
+  { q:"Several cultural events ________ next summer in F s.",
+    opts:["will organise","will be organised","are organising","organise"], ans:1,
+    fb:"<strong>will be organised</strong>  -- Future Passive: will be + past participle." },
+  { q:"The football match was ________ because of the heavy rain.",
+    opts:["broken down","stood up for","called off","looked up to"], ans:2,
+    fb:"<strong>called off</strong> = cancelled." },
+  { q:"________ she had little experience, she was chosen to lead the project.",
+    opts:["Despite","In spite of","Nevertheless","Although"], ans:3,
+    fb:"<strong>Although</strong> + full clause (she had little experience = subject + verb)." },
+  { q:"I really can't ________ people who are intolerant of other cultures.",
+    opts:["stand up for","put up with","look up to","get along with"], ans:1,
+    fb:"<strong>put up with</strong> = to tolerate." },
+  { q:"Farah is an inspiration. ________, she still faces many obstacles.",
+    opts:["Despite","Although","However","In spite of"], ans:2,
+    fb:"<strong>However</strong> is a sentence connector  -- comes after a full stop, comma follows it." },
+  { q:"Many traditions ________ down from generation to generation in Moroccan culture.",
+    opts:["are pass","have passed","are passed","pass"], ans:2,
+    fb:"<strong>are passed</strong>  -- Present Simple Passive: are + past participle." },
+];
+
+const mockFillData = [
+  { pre:"The first female minister in Morocco", post:"in 1997.", ans:"was appointed", alts:["was elected"] },
+  { pre:"", post:"working hard all her life, she never received the recognition she deserved.", ans:"Despite", alts:["In spite of"] },
+  { pre:"The two communities", post:"well, despite their cultural differences.", ans:"get along", alts:["got along"] },
+  { pre:"I am writing to", post:"for the misunderstanding during last week's visit.", ans:"apologise" },
+  { pre:"Thousands of letters about women's rights", post:"to the government every year.", ans:"are sent", alts:["have been sent"] },
+  { pre:"She refused to", post:"her identity to fit in with the majority culture.", ans:"give up" },
+  { pre:"", post:"she apologised, the situation remained tense for several days.", ans:"Although", alts:["Even though"] },
+  { pre:"Many languages", post:"in Morocco, including Arabic, Amazigh, and French.", ans:"are spoken" },
+  { pre:"Young people tend to", post:"women who have broken cultural barriers.", ans:"look up to" },
+  { pre:"The cultural festival was", post:"due to security concerns, but a new date has been confirmed.", ans:"called off", alts:["cancelled"] },
+];
+
+const mockTxData = [
+  { given:"She worked very hard, but she wasn't promoted.", key:"DESPITE",
+    model:"Despite working very hard, she wasn't promoted." },
+  { given:"The government introduced the new law last year.", key:"WAS",
+    model:"The new law was introduced by the government last year." },
+  { given:"They cancelled the cultural event because of bad weather.", key:"CALLED OFF",
+    model:"They called the cultural event off because of bad weather. / The cultural event was called off because of bad weather." },
+  { given:"I am sorry that I was rude to you at the meeting.", key:"APOLOGISE",
+    model:"I sincerely apologise for being rude to you at the meeting." },
+  { given:"Even though he made progress, challenges remained.", key:"IN SPITE OF",
+    model:"In spite of his progress, challenges remained." },
+  { given:"Women have fought hard for equality. But there is still work to do.", key:"HOWEVER",
+    model:"Women have fought hard for equality. However, there is still work to do." },
+  { given:"People admire her because she stands up for justice.", key:"LOOKED UP TO",
+    model:"She is looked up to because she stands up for justice." },
+  { given:"The committee will announce the results tomorrow.", key:"WILL BE",
+    model:"The results will be announced by the committee tomorrow." },
+];
+
+// --------------------------------------------
+// GENERIC ENGINE  -- MCQ
+// --------------------------------------------
+const mcqRegistry = {
+  p1:     { data: p1McqData,   prefix:'p1mc',   cid:'p1-mcq',   sid:'p1-score' },
+  p2:     { data: p2McqData,   prefix:'p2mc',   cid:'p2-mcq',   sid:'p2-score' },
+  p3:     { data: p3McqData,   prefix:'p3mc',   cid:'p3-mcq',   sid:'p3-score' },
+  p4:     { data: p4McqData,   prefix:'p4mc',   cid:'p4-mcq',   sid:'p4-score' },
+  p4func: { data: p4FuncData,  prefix:'p4fc',   cid:'p4-func',  sid:'p4func-score' },
+  mock:   { data: mockMcqData, prefix:'mockmc', cid:'mock-mcq', sid:'mock-score' },
+};
+
+function buildGenMCQ(id) {
+  var reg = mcqRegistry[id];
+  var c = document.getElementById(reg.cid);
+  if (!c) return;
+  c.innerHTML = '';
+  reg.data.forEach(function(q, i) {
+    var html = '<div class="quiz-q" id="' + reg.prefix + i + '">'
+      + '<div class="q-num">Q' + (i+1) + '</div>'
+      + '<div class="quiz-text">' + q.q + '</div>'
+      + '<div class="opts">';
+    q.opts.forEach(function(o, j) {
+      html += '<button class="opt" id="' + reg.prefix + i + 'o' + j
+        + '" onclick="gPick(\'' + reg.prefix + '\',' + i + ',' + j + ',' + q.opts.length + ')">'
+        + o + '</button>';
+    });
+    html += '</div><div class="q-fb" id="' + reg.prefix + i + 'fb"></div></div>';
+    c.innerHTML += html;
+  });
+}
+
+function gPick(pfx, qi, oi, len) {
+  for (var j = 0; j < len; j++) {
+    var b = document.getElementById(pfx + qi + 'o' + j);
+    if (b) { b.classList.remove('chosen'); b.style.borderColor = ''; b.style.color = ''; }
+  }
+  var btn = document.getElementById(pfx + qi + 'o' + oi);
+  if (btn) { btn.classList.add('chosen'); btn.dataset.idx = oi; btn.style.borderColor = 'var(--gold)'; btn.style.color = 'var(--gold)'; }
+}
+
+function checkGenMCQ(id) {
+  var reg = mcqRegistry[id];
+  var score = 0;
+  reg.data.forEach(function(q, i) {
+    var qDiv = document.getElementById(reg.prefix + i);
+    var fb   = document.getElementById(reg.prefix + i + 'fb');
+    if (!qDiv) return;
+    var opts = qDiv.querySelectorAll('.opt');
+    opts.forEach(function(b) { b.disabled = true; });
+    var chosen = qDiv.querySelector('.opt.chosen');
+    if (!chosen) { if (fb) { fb.textContent = 'No answer selected.'; fb.className = 'q-fb show no'; } return; }
+    var j = parseInt(chosen.dataset.idx);
+    if (j === q.ans) {
+      score++;
+      chosen.classList.add('correct');
+      if (fb) { fb.innerHTML = 'Correct! ' + q.fb; fb.className = 'q-fb show ok'; }
+    } else {
+      chosen.classList.add('wrong');
+      var correctBtn = document.getElementById(reg.prefix + i + 'o' + q.ans);
+      if (correctBtn) correctBtn.classList.add('correct');
+      if (fb) { fb.innerHTML = 'Incorrect. ' + q.fb; fb.className = 'q-fb show no'; }
+    }
+  });
+  var box = document.getElementById(reg.sid);
+  if (box) {
+    box.style.display = 'block';
+    var numEl = document.getElementById(reg.sid + '-num');
+    var msgEl = document.getElementById(reg.sid + '-msg');
+    if (numEl) numEl.textContent = score + ' / ' + reg.data.length;
+    var msgs = ['Keep reviewing!','Getting there!','Good work!','Excellent!','Perfect score!'];
+    if (msgEl) msgEl.textContent = msgs[Math.min(Math.round(score / reg.data.length * 4), 4)];
+  }
+}
+
+function resetGenMCQ(id) {
+  buildGenMCQ(id);
+  var reg = mcqRegistry[id];
+  var box = document.getElementById(reg.sid);
+  if (box) box.style.display = 'none';
+}
+
+// ============================================
+// GENERIC ENGINE -- FILL IN THE BLANK
+// ============================================
+var fillRegistry = {
+  p1f:  { data: p1FillData,   prefix:'p1fi',  cid:'p1-fill',   sid:'p1f-score' },
+  p2f:  { data: p2FillData,   prefix:'p2fi',  cid:'p2-fill',   sid:'p2f-score' },
+  p3f:  { data: p3FillData,   prefix:'p3fi',  cid:'p3-fill',   sid:'p3f-score' },
+  p4f:  { data: p4FillData,   prefix:'p4fi',  cid:'p4-fill',   sid:'p4f-score' },
+  mockf:{ data: mockFillData, prefix:'mkfi',  cid:'mock-fill',  sid:'mockf-score' },
+};
+
+function buildGenFill(id) {
+  var reg = fillRegistry[id];
+  var c = document.getElementById(reg.cid);
+  if (!c) return;
+  c.innerHTML = '';
+  reg.data.forEach(function(q, i) {
+    c.innerHTML += '<div class="fi-q">'
+      + '<div class="fi-line">' + (i+1) + '. ' + q.pre
+      + ' <input class="fi-input" id="' + reg.prefix + i + '" type="text" placeholder="..." autocomplete="off" spellcheck="false"> '
+      + q.post + '</div>'
+      + '<div class="fi-fb" id="' + reg.prefix + i + 'fb"></div></div>';
+  });
+}
+
+function checkGenFill(id) {
+  var reg = fillRegistry[id];
+  var score = 0;
+  reg.data.forEach(function(q, i) {
+    var inp = document.getElementById(reg.prefix + i);
+    var fb  = document.getElementById(reg.prefix + i + 'fb');
+    if (!inp) return;
+    var val = inp.value.trim().toLowerCase();
+    var correct = q.ans.toLowerCase();
+    var alts = (q.alts || []).map(function(a){ return a.toLowerCase(); });
+    if (val === correct || alts.indexOf(val) !== -1) {
+      score++;
+      inp.classList.add('ok'); inp.classList.remove('no');
+      if (fb) { fb.innerHTML = 'Correct!'; fb.className = 'fi-fb show ok'; }
+    } else {
+      inp.classList.add('no'); inp.classList.remove('ok');
+      if (fb) { fb.innerHTML = 'Answer: <strong>' + q.ans + '</strong>'; fb.className = 'fi-fb show no'; }
+    }
+  });
+  var box = document.getElementById(reg.sid);
+  if (box) {
+    box.style.display = 'block';
+    var numEl = document.getElementById(reg.sid + '-num');
+    var msgEl = document.getElementById(reg.sid + '-msg');
+    if (numEl) numEl.textContent = score + ' / ' + reg.data.length;
+    var msgs = ['Keep reviewing!','Getting there!','Good work!','Excellent!','Perfect score!'];
+    if (msgEl) msgEl.textContent = msgs[Math.min(Math.round(score / reg.data.length * 4), 4)];
+  }
+}
+
+function resetGenFill(id) {
+  buildGenFill(id);
+  var reg = fillRegistry[id];
+  var box = document.getElementById(reg.sid);
+  if (box) box.style.display = 'none';
+}
+
+// ============================================
+// GENERIC ENGINE -- TRANSFORMATION
+// ============================================
+var txRegistry = {
+  p1t:  { data: p1TxData,   prefix:'p1tx',  cid:'p1-tx' },
+  p2t:  { data: p2TxData,   prefix:'p2tx',  cid:'p2-tx' },
+  mockt:{ data: mockTxData, prefix:'mktx',  cid:'mock-tx' },
+};
+
+function buildGenTX(id) {
+  var reg = txRegistry[id];
+  var c = document.getElementById(reg.cid);
+  if (!c) return;
+  c.innerHTML = '';
+  reg.data.forEach(function(q, i) {
+    c.innerHTML += '<div class="tx-q">'
+      + '<div class="q-num">Q' + (i+1) + '</div>'
+      + '<div class="tx-given">' + q.given + '<br><span class="key">' + q.key + '</span></div>'
+      + '<textarea class="tx-answer-box" rows="2" placeholder="Write your answer here..."></textarea>'
+      + '<div class="model-ans" id="' + reg.prefix + i + 'm"><strong>Model Answer</strong> ' + q.model + '</div>'
+      + '</div>';
+  });
+}
+
+function showTX(id) {
+  var reg = txRegistry[id];
+  reg.data.forEach(function(_, i) {
+    var el = document.getElementById(reg.prefix + i + 'm');
+    if (el) el.classList.add('show');
+  });
+}
+function hideTX(id) {
+  var reg = txRegistry[id];
+  reg.data.forEach(function(_, i) {
+    var el = document.getElementById(reg.prefix + i + 'm');
+    if (el) el.classList.remove('show');
+  });
+}
+
+// ============================================
+// WRITING CHECKLIST
+// ============================================
+var checks = [
+  "I included my address and the date.",
+  "I used an appropriate greeting (Dear ...).",
+  "I apologised clearly in the opening paragraph.",
+  "I explained the reason for the problem.",
+  "I offered a solution or made a promise.",
+  "I used at least one concession connector (Although / Despite).",
+  "I closed politely (I hope you will forgive me / Best regards).",
+  "My letter is between 80 and 120 words.",
+  "I checked my grammar (no passive voice mistakes).",
+  "I used vocabulary and expressions from this unit."
+];
+
+function buildChecklist() {
+  var c = document.getElementById('checklist');
+  if (!c) return;
+  c.innerHTML = '';
+  checks.forEach(function(ch, i) {
+    c.innerHTML += '<label style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;'
+      + 'border-bottom:1px solid var(--border);font-size:0.83rem;cursor:pointer;line-height:1.4;">'
+      + '<input type="checkbox" id="chk' + i + '" style="margin-top:2px;accent-color:var(--green);flex-shrink:0;">'
+      + '<span>' + ch + '</span></label>';
+  });
+}
+
+// ============================================
+// MATCH BUTTON STYLES
+// ============================================
+var matchStyle = document.createElement('style');
+matchStyle.textContent = '.match-btn{'
+  + 'background:var(--bg3);border:1px solid var(--border);'
+  + 'border-radius:8px;padding:9px 11px;cursor:pointer;'
+  + 'font-size:0.78rem;line-height:1.4;transition:all .2s;'
+  + 'margin-bottom:6px;display:block;width:100%;text-align:left;}'
+  + '.match-btn:hover:not(.matched){border-color:var(--gold);}'
+  + '.match-btn.selecting{border-color:var(--gold);color:var(--gold);background:#1a1800;}'
+  + '.match-btn.matched{border-color:var(--green);color:var(--green);background:rgba(61,214,140,.08);cursor:default;}'
+  + '.match-btn.wrong-flash{border-color:var(--red);color:var(--red);background:rgba(224,82,82,.08);}';
+document.head.appendChild(matchStyle);
+
+// ============================================
+// INITIALISE ALL SECTIONS
+// ============================================
+buildGenMCQ('p1');   buildGenFill('p1f');  buildGenTX('p1t');
+buildGenMCQ('p2');   buildGenFill('p2f');  buildGenTX('p2t');
+buildGenMCQ('p3');   buildGenFill('p3f');  buildMatch();
+buildGenMCQ('p4');   buildGenFill('p4f');
+buildGenMCQ('p4func');
+buildGenMCQ('mock'); buildGenFill('mockf'); buildGenTX('mockt');
+buildChecklist();
+</script>
+</body>
+</html>
