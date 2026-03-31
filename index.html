@@ -547,6 +547,94 @@ footer{
 
 /* p tags inside cards in practice */
 #panel-practice p{color:#c8cce8;}
+
+/* ── SCAFFOLDED WRITING ── */
+.scaffold-step{
+  background:#16192c;border:1px solid #2a2f48;
+  border-radius:10px;padding:14px 16px;margin-bottom:12px;
+  transition:all .3s;
+}
+.scaffold-step.sc-locked{
+  opacity:0.35;pointer-events:none;filter:grayscale(1);
+}
+.scaffold-step.sc-unlocked{
+  opacity:1;pointer-events:auto;filter:none;
+  border-color:#4a9eff;
+}
+.scaffold-step.sc-done{
+  opacity:1;pointer-events:auto;filter:none;
+  border-color:#3dd68c;background:#131e1a;
+}
+.sc-num{
+  font-family:'Oswald',sans-serif;font-size:0.82rem;font-weight:700;
+  color:#f0f2ff;letter-spacing:.5px;margin-bottom:8px;
+}
+.sc-hint{
+  display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;
+  font-size:0.78rem;color:#9aa0c0;align-items:center;
+}
+.sc-hint::before{content:'Use:';color:#636a7c;font-size:0.72rem;margin-right:2px;}
+.sc-chip{
+  background:rgba(74,158,255,.15);border:1px solid rgba(74,158,255,.35);
+  color:#82c4ff;border-radius:20px;padding:3px 10px;
+  font-size:0.75rem;font-weight:600;font-family:'JetBrains Mono',monospace;
+  cursor:default;
+}
+.sc-example{
+  font-size:0.82rem;color:#7fffc0;font-style:italic;
+  background:rgba(61,214,140,.07);border-left:3px solid #3dd68c;
+  padding:7px 10px;border-radius:0 6px 6px 0;margin-bottom:10px;
+  line-height:1.5;
+}
+.sc-textarea{
+  width:100%;background:#0f1118;border:1px solid #2a2f48;
+  border-radius:8px;padding:10px 12px;color:#f0f2ff;
+  font-family:'Source Serif 4',Georgia,serif;font-size:0.9rem;
+  resize:vertical;outline:none;min-height:54px;
+  transition:border-color .2s;line-height:1.6;
+}
+.sc-textarea:focus{border-color:var(--gold);}
+.sc-textarea::placeholder{color:#3a4060;}
+.sc-btn{
+  margin-top:9px;
+  font-family:'Oswald',sans-serif;font-size:0.75rem;font-weight:700;
+  letter-spacing:.8px;text-transform:uppercase;
+  background:linear-gradient(135deg,#1a3a5c,#1a2040);
+  border:1px solid rgba(74,158,255,.4);color:#82c4ff;
+  padding:7px 16px;border-radius:8px;cursor:pointer;
+  transition:all .2s;
+}
+.sc-btn:hover{background:rgba(74,158,255,.2);border-color:var(--blue);color:#c0e4ff;}
+.sc-preview{
+  background:linear-gradient(135deg,rgba(61,214,140,.08),rgba(74,158,255,.05));
+  border:1px solid rgba(61,214,140,.3);border-radius:10px;
+  padding:16px;margin-top:4px;
+}
+.sc-preview-label{
+  font-family:'Oswald',sans-serif;font-size:0.7rem;font-weight:700;
+  color:#3dd68c;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;
+}
+#sc-preview-text{
+  font-size:0.92rem;line-height:1.9;color:#f0f2ff;
+  border-left:3px solid #3dd68c;padding-left:12px;margin-bottom:12px;
+}
+#sc-preview-text span.sc-s{display:block;margin-bottom:4px;}
+.sc-checklist{margin-top:8px;}
+.sc-check-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.8rem;padding:4px 0;border-bottom:1px solid rgba(61,214,140,.1);
+  color:#9aa0c0;
+}
+.sc-check-item:last-child{border-bottom:none;}
+.sc-check-item .sc-tick{color:#3dd68c;font-size:0.9rem;}
+.sc-check-item .sc-cross{color:#e05252;font-size:0.9rem;}
+
+@media(max-width:768px){
+  .scaffold-step{padding:11px 12px;}
+  .sc-textarea{font-size:0.86rem;}
+  .sc-example{font-size:0.78rem;}
+  .sc-num{font-size:0.78rem;}
+}
 </style>
 </head>
 <body>
@@ -1018,15 +1106,82 @@ footer{
     <div class="score-box" id="p1-score"><div class="score-big" id="p1-score-num">—</div><div class="score-msg" id="p1-score-msg"></div></div>
   </div>
 
-  <div class="card">
-    <div class="card-title"><span class="ico">✍️</span>A2 — Write the passive form of the verb in brackets</div>
-    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:10px;">Write the correct passive form. Pay attention to the tense.</p>
-    <div id="p1-fill"></div>
-    <div class="btn-row">
-      <button class="btn btn-gold" onclick="checkGenFill('p1f')">Check</button>
-      <button class="btn btn-outline" onclick="resetGenFill('p1f')">Reset</button>
+  <div class="card" id="sec-conc-writing">
+    <div class="card-title"><span class="ico">✍️</span>A2 — Write a short paragraph using Concession &amp; Contrast</div>
+    <p style="font-size:0.82rem;color:#9aa0c0;margin-bottom:14px;line-height:1.6;">Follow the steps below. Each step builds one part of your paragraph. Use the connectors and sentence starters provided.</p>
+
+    <!-- STEP 1 -->
+    <div class="scaffold-step" id="sc-step1">
+      <div class="sc-num">Step 1 — Opening sentence (introduce a positive idea)</div>
+      <div class="sc-hint">
+        Use: <span class="sc-chip">Women have made great progress in…</span>
+        <span class="sc-chip">In recent years, more women…</span>
+      </div>
+      <div class="sc-example">e.g. <em>Women have made great progress in education and politics.</em></div>
+      <textarea class="sc-textarea" id="sc1" rows="2" placeholder="Write your opening sentence here…"></textarea>
+      <button class="sc-btn" onclick="scNext(1)">Next step →</button>
     </div>
-    <div class="score-box" id="p1f-score"><div class="score-big" id="p1f-score-num">—</div><div class="score-msg" id="p1f-score-msg"></div></div>
+
+    <!-- STEP 2 -->
+    <div class="scaffold-step sc-locked" id="sc-step2">
+      <div class="sc-num">Step 2 — Concession (admit the other side)</div>
+      <div class="sc-hint">
+        Use: <span class="sc-chip">However,</span>
+        <span class="sc-chip">Nevertheless,</span>
+        <span class="sc-chip">On the other hand,</span>
+      </div>
+      <div class="sc-example">e.g. <em>However, gender discrimination still exists in many workplaces.</em></div>
+      <textarea class="sc-textarea" id="sc2" rows="2" placeholder="Add a contrasting idea using However / Nevertheless…"></textarea>
+      <button class="sc-btn" onclick="scNext(2)">Next step →</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="scaffold-step sc-locked" id="sc-step3">
+      <div class="sc-num">Step 3 — Develop with Although or Despite</div>
+      <div class="sc-hint">
+        Use: <span class="sc-chip">Although + clause (S+V),</span>
+        <span class="sc-chip">Despite + -ing / noun phrase,</span>
+        <span class="sc-chip">Even though…</span>
+      </div>
+      <div class="sc-example">e.g. <em>Although many laws have been passed, women are still paid less than men in some sectors.</em></div>
+      <textarea class="sc-textarea" id="sc3" rows="2" placeholder="Write a sentence using Although / Despite / Even though…"></textarea>
+      <button class="sc-btn" onclick="scNext(3)">Next step →</button>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="scaffold-step sc-locked" id="sc-step4">
+      <div class="sc-num">Step 4 — Contrast with Whereas or While</div>
+      <div class="sc-hint">
+        Use: <span class="sc-chip">Whereas some… , others…</span>
+        <span class="sc-chip">While men… , women…</span>
+      </div>
+      <div class="sc-example">e.g. <em>Whereas some countries have achieved near-equality, others still restrict women's rights.</em></div>
+      <textarea class="sc-textarea" id="sc4" rows="2" placeholder="Write a sentence using Whereas / While…"></textarea>
+      <button class="sc-btn" onclick="scNext(4)">Next step →</button>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="scaffold-step sc-locked" id="sc-step5">
+      <div class="sc-num">Step 5 — Concluding sentence (your opinion or call to action)</div>
+      <div class="sc-hint">
+        Use: <span class="sc-chip">In spite of the challenges,</span>
+        <span class="sc-chip">It is clear that…</span>
+        <span class="sc-chip">Therefore, we must…</span>
+      </div>
+      <div class="sc-example">e.g. <em>In spite of the challenges, progress is being made and we must continue to fight for equality.</em></div>
+      <textarea class="sc-textarea" id="sc5" rows="2" placeholder="Write your concluding sentence…"></textarea>
+      <button class="sc-btn" onclick="showFullParagraph()">✦ Show my full paragraph</button>
+    </div>
+
+    <!-- FULL PARAGRAPH PREVIEW -->
+    <div class="sc-preview" id="sc-preview" style="display:none;">
+      <div class="sc-preview-label">Your paragraph</div>
+      <div id="sc-preview-text"></div>
+      <div class="sc-checklist" id="sc-checklist"></div>
+      <div class="btn-row" style="margin-top:10px;">
+        <button class="btn btn-outline" onclick="resetScaffold()">↺ Start again</button>
+      </div>
+    </div>
   </div>
 
   <div class="card">
@@ -1842,9 +1997,116 @@ matchStyle.textContent = '.match-btn{'
 document.head.appendChild(matchStyle);
 
 // ============================================
+// SCAFFOLDED PARAGRAPH WRITING (A2)
+// ============================================
+var connectors = {
+  1: [],
+  2: ['however','nevertheless','on the other hand'],
+  3: ['although','despite','even though','in spite of'],
+  4: ['whereas','while'],
+  5: ['in spite of','it is clear','therefore','in conclusion']
+};
+
+function scNext(step) {
+  var ta = document.getElementById('sc' + step);
+  var val = ta ? ta.value.trim() : '';
+  if (!val) {
+    ta.style.borderColor = '#e05252';
+    ta.placeholder = 'Please write something before continuing...';
+    setTimeout(function(){ ta.style.borderColor = '#2a2f48'; }, 1500);
+    return;
+  }
+  // Mark current step done
+  var cur = document.getElementById('sc-step' + step);
+  cur.classList.remove('sc-unlocked');
+  cur.classList.add('sc-done');
+  // Unlock next
+  var next = document.getElementById('sc-step' + (step + 1));
+  if (next) {
+    next.classList.remove('sc-locked');
+    next.classList.add('sc-unlocked');
+    setTimeout(function(){
+      next.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 120);
+  }
+}
+
+function showFullParagraph() {
+  var ta = document.getElementById('sc5');
+  var val = ta ? ta.value.trim() : '';
+  if (!val) {
+    ta.style.borderColor = '#e05252';
+    ta.placeholder = 'Please write your concluding sentence first...';
+    setTimeout(function(){ ta.style.borderColor = '#2a2f48'; }, 1500);
+    return;
+  }
+  // Mark step 5 done
+  document.getElementById('sc-step5').classList.remove('sc-unlocked');
+  document.getElementById('sc-step5').classList.add('sc-done');
+
+  // Build full paragraph text
+  var steps = [1,2,3,4,5];
+  var sentences = steps.map(function(i){
+    var t = document.getElementById('sc' + i);
+    return t ? t.value.trim() : '';
+  }).filter(function(s){ return s.length > 0; });
+
+  var previewText = document.getElementById('sc-preview-text');
+  previewText.innerHTML = sentences.map(function(s){
+    return '<span class="sc-s">' + s + '</span>';
+  }).join('');
+
+  // Auto-check for connector usage
+  var allText = sentences.join(' ').toLowerCase();
+  var checkList = [
+    { label:'Used a sentence connector (However / Nevertheless)', words:['however','nevertheless','on the other hand'] },
+    { label:'Used Although / Even though + clause', words:['although','even though'] },
+    { label:'Used Despite / In spite of + noun/-ing', words:['despite','in spite of'] },
+    { label:'Used Whereas or While for contrast', words:['whereas','while'] },
+    { label:'Paragraph has 5 sentences or more', check: sentences.length >= 5 },
+  ];
+
+  var clHtml = '<div style="font-family:Oswald,sans-serif;font-size:0.7rem;font-weight:700;color:#f0b429;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;">Auto-check</div>';
+  checkList.forEach(function(item){
+    var passed = item.check !== undefined ? item.check
+      : item.words.some(function(w){ return allText.indexOf(w) !== -1; });
+    clHtml += '<div class="sc-check-item">'
+      + '<span class="' + (passed ? 'sc-tick' : 'sc-cross') + '">' + (passed ? '✔' : '✘') + '</span>'
+      + item.label + '</div>';
+  });
+  document.getElementById('sc-checklist').innerHTML = clHtml;
+
+  var preview = document.getElementById('sc-preview');
+  preview.style.display = 'block';
+  setTimeout(function(){ preview.scrollIntoView({behavior:'smooth', block:'start'}); }, 120);
+}
+
+function resetScaffold() {
+  [1,2,3,4,5].forEach(function(i){
+    var ta = document.getElementById('sc' + i);
+    if (ta) { ta.value = ''; ta.style.borderColor = '#2a2f48'; }
+    var step = document.getElementById('sc-step' + i);
+    if (step) {
+      step.classList.remove('sc-done','sc-unlocked','sc-locked');
+      if (i === 1) { step.classList.add('sc-unlocked'); }
+      else { step.classList.add('sc-locked'); }
+    }
+  });
+  var preview = document.getElementById('sc-preview');
+  if (preview) preview.style.display = 'none';
+  document.getElementById('sc-step1').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+// Initialise scaffold — step 1 starts unlocked
+(function initScaffold(){
+  var step1 = document.getElementById('sc-step1');
+  if (step1) { step1.classList.add('sc-unlocked'); }
+})();
+
+// ============================================
 // INITIALISE ALL SECTIONS
 // ============================================
-buildGenMCQ('p1');   buildGenFill('p1f');  buildGenTX('p1t');
+buildGenMCQ('p1');   buildGenTX('p1t');
 buildGenMCQ('p2');   buildGenFill('p2f');  buildGenTX('p2t');
 buildGenMCQ('p3');   buildGenFill('p3f');  buildMatch();
 buildGenMCQ('p4');   buildGenFill('p4f');
